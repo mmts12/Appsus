@@ -6,6 +6,7 @@
 @import '../../apps/Keep/assets/css/KeepMain.css';
 @import '../../apps/Mail/assets/css/MailMain.css';
 body {
+  margin: 0;
 }
 
 /* HELPERS */
