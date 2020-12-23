@@ -1,4 +1,4 @@
-export class Home extends React.Component {
+export class About extends React.Component {
   componentDidMount() {
     console.log(this);
   }
@@ -6,7 +6,7 @@ export class Home extends React.Component {
   render() {
     return (
       <section>
-        <h2>Welcome To Hell!</h2>
+        <h2>About</h2>
       </section>
     );
   }

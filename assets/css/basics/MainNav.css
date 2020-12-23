@@ -1,0 +1,9 @@
+.apps-header {
+    background-color: whitesmoke;
+    border-bottom: 2px grey solid;
+    padding: 1em;
+}
+
+.apps-header a {
+    color: black;
+}

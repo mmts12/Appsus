@@ -1,13 +1,66 @@
+@import './basics/Base.css';
+@import './basics/Fonts.css';
+@import './basics/HomePage.css';
+@import './basics/MainNav.css';
+@import './basics/UserMsg.css';
+@import '../../apps/Keep/assets/css/KeepMain.css';
+@import '../../apps/Mail/assets/css/MailMain.css';
 body {
-    background-color: lightblue;
+    background: linear-gradient(to left, #f8b500, #fceabb);
 }
 
-.user-preview {
-    background-color: darkcyan;
-    padding: 5px;
-    width: 200px;
-    text-align: center;    
+/* HELPERS */
+
+.main-layout {
+    max-width: 1000px;
+    margin: 0 auto;
 }
-.user-preview button {
-    margin: 5px;
+
+/* grid-helpers */
+
+.grid {
+    display: grid;
+    color: black;
+}
+
+/* flex-helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.col {
+    flex-direction: column;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.space-around {
+    justify-content: space-around;
+}
+
+.flex.center {
+    justify-content: center;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+/* list-helpers */
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
