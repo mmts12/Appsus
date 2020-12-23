@@ -14,6 +14,6 @@ export function KeepDynamicCmp({ currCmp, info }) {
     case 'NoteVideo':
       return <NoteVideo info={info} />
   }
-  return <p>UNKNWON</p>
+  return <p>Couldn't Load Note..</p>
 }
 

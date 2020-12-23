@@ -1,5 +1,8 @@
 export function NoteImg({ info }) {
     return (
-        <img src={info.url} />
+        <div className="img-card">
+            <img src={info.url} />
+            <h1>{info.title}</h1>
+        </div>
     )
 }

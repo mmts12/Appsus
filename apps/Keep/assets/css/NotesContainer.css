@@ -1,0 +1,32 @@
+.notes-container .note {
+    width: 200px;
+    border: 1px solid grey;
+    border-radius: .2em;
+    margin: 1em;
+    padding: 1em;
+}
+
+.note {
+    height: fit-content;
+}
+
+.note:hover {
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
+}
+
+.text-card {
+    text-align: center;
+}
+
+.img-card {
+    text-align: center;
+}
+
+.video-card {
+    text-align: center;
+}
+
+.video-card iframe {
+    width: 100%;
+    border-radius: 0.2em;
+}

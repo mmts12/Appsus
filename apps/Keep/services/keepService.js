@@ -1,5 +1,6 @@
 export const keepService = {
     query,
+    addNote,
 }
 
 let notes = [
@@ -17,8 +18,8 @@ let notes = [
         type: 'NoteImg',
         isPinned: false,
         info: {
-            title: 'Baby Boss',
-            url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F163607398944466017%2F&psig=AOvVaw3DTyCGmX8HhVe7Zn-RUW94&ust=1608812003763000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPjp5PGJ5O0CFQAAAAAdAAAAABAE',
+            title: 'Venice',
+            url: 'https://i.picsum.photos/id/164/200/200.jpg?hmac=UA4QhIt441pdFJ6Uam2yCxzda_KjWgQgy8fYs_-NFEM',
         },
         style: {
             bgColor: 'whitesmoke',
@@ -28,11 +29,14 @@ let notes = [
         type: 'NoteTodos',
         isPinned: false,
         info: {
-            label: 'Grocery List:',
+            title: 'Grocery List:',
             todos: [
                 { txt: 'Milk', doneAt: null },
                 { txt: 'Eggs', doneAt: 188111111 },
             ],
+        },
+        style: {
+            bgColor: 'whitesmoke',
         },
     },
     {
@@ -40,7 +44,7 @@ let notes = [
         isPinned: false,
         info: {
             title: 'Get Up Stand Up',
-            url: 'https://www.youtube.com/watch?v=X2W3aG8uizA',
+            url: 'https://www.youtube.com/embed/X2W3aG8uizA',
         },
         style: {
             bgColor: 'whitesmoke',
@@ -52,4 +56,19 @@ window.theNotes = notes;  //DEBUGGING. REMOVE WHEN FINISH
 
 function query() {
     return notes;
+}
+
+function addNote(note) {
+    const noteToAdd = {
+        type: { note },
+        isPinned: false,
+        info: {
+            note
+        },
+        style: {
+            bgColor: 'whiteSmoke',
+        }
+    }
+    notes = [noteToAdd, notes]
+    console.log('adding note:', notes);
 }

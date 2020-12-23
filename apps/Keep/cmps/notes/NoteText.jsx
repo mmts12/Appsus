@@ -1,5 +1,7 @@
 export function NoteText({ info }) {
     return (
-        <p>{info.txt}</p>
+        <div className="text-card">
+            <h1>{info.txt}</h1>
+        </div>
     )
 }
