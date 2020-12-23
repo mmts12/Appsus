@@ -1,7 +1,7 @@
 .search-area {
     text-align: center;
     margin: 1em auto;
-    padding: .5em;
+    padding: .2em;
     background-color: white;
     border: 1px solid grey;
     border-radius: .5em;
@@ -19,4 +19,13 @@
 
 .search-area :focus {
     outline-style: none;
+}
+
+.search-area form i {
+    opacity: 0.6;
+}
+
+.search-area form i:hover {
+    cursor: pointer;
+    opacity: 1;
 }

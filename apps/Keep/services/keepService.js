@@ -52,23 +52,12 @@ let notes = [
     },
 ]
 
-window.theNotes = notes;  //DEBUGGING. REMOVE WHEN FINISH
-
 function query() {
     return notes;
 }
 
 function addNote(note) {
-    const noteToAdd = {
-        type: { note },
-        isPinned: false,
-        info: {
-            note
-        },
-        style: {
-            bgColor: 'whiteSmoke',
-        }
-    }
-    notes = [noteToAdd, notes]
-    console.log('adding note:', notes);
+    console.log('adding note:', note);
+    const noteToAdd = { ...note }
+    notes = [noteToAdd, ...notes]
 }
