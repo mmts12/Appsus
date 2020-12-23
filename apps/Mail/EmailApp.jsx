@@ -80,12 +80,11 @@ export class EmailApp extends React.Component {
         <main className="email-main">
           <SideBar addEmail={this.onOpenModal} />
           <div className="email-list">
-            {!this.state.modalShow && (
-              <EmailList
-                emailDelete={this.onDelete}
-                emails={this.getEmailsForDisplay()}
-              />
-            )}
+            <EmailList
+              emailDelete={this.onDelete}
+              emails={this.getEmailsForDisplay()}
+            />
+
             {this.state.modalShow && (
               <ComposeModal
                 onAddNewMail={this.onAddNewMail}

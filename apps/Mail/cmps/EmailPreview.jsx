@@ -5,7 +5,12 @@ export function EmailPreview({ email, emailDelete }) {
       <div>{email.subject}</div>
       <div>
         <div>{email.sentAt}</div>
-        <button onClick={() => emailDelete(email.id)}>Delete</button>
+        <button
+          className="email-delete-btn"
+          onClick={() => emailDelete(email.id)}
+        >
+          Delete
+        </button>
       </div>
     </li>
   );
