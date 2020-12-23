@@ -6,7 +6,7 @@ export function EmailList({ emails }) {
       <ul>
         {emails.map((email) => {
           return (
-            <li>
+            <li key={email.id}>
               <div>{email.senderName}</div>
               <div>{email.subject}</div>
               <div>{email.sendAt}</div>

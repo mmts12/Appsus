@@ -1,6 +1,6 @@
 import { EmailList } from './cmps/EmailList.jsx';
 import { EmailHeader } from './cmps/EmailHeader.jsx';
-import { mailService } from './services/MailService.js';
+import { emailService } from './services/emailService.js';
 
 export class EmailApp extends React.Component {
   state = {
@@ -8,7 +8,7 @@ export class EmailApp extends React.Component {
   };
 
   componentDidMount() {
-    mailService.query().then((emails) => {
+    emailService.query().then((emails) => {
       this.setState({ emails });
     });
   }

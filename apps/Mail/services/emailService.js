@@ -1,5 +1,6 @@
+import { utilService } from '../../../services/util-service.js';
 
-export const mailService = {
+export const emailService = {
     query
 }
 
@@ -11,6 +12,7 @@ function query() {
 function getDemoEmails() {
     return [
         {
+            id: utilService.makeId(),
             senderName: 'moshe',
             subject: 'Hello?',
             body: 'Pick up!',
@@ -18,6 +20,7 @@ function getDemoEmails() {
             sentAt: new Date().toString()
         },
         {
+            id: utilService.makeId(),
             senderName: 'moshe',
             subject: 'Wassap?',
             body: 'Pick up!',
@@ -25,6 +28,7 @@ function getDemoEmails() {
             sentAt: new Date().toString()
         },
         {
+            id: utilService.makeId(),
             senderName: 'moshe',
             subject: 'Wassap?',
             body: 'Pick up!',
