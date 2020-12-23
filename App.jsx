@@ -1,5 +1,5 @@
 import { AppsHeader } from './cmps/AppsHeader.jsx';
-import { MailApp } from './apps/Mail/MailApp.jsx';
+import { EmailApp } from './apps/Mail/EmailApp.jsx';
 import { KeepApp } from './apps/Keep/KeepApp.jsx';
 import { About } from './pages/About.jsx';
 import { Home } from './pages/home.jsx';
@@ -14,7 +14,7 @@ export function App() {
       <section className="app">
         <AppsHeader />
         <Switch>
-          <Route exact path="/mail" component={MailApp} />
+          <Route exact path="/mail" component={EmailApp} />
           <Route exact path="/keep" component={KeepApp} />
           <Route exact path="/about" component={About} />
           <Route exact path="/" component={Home} />

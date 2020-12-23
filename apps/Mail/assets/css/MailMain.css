@@ -1,3 +1,21 @@
 body {
-    margin: 0px;
+  margin: 0px;
+}
+
+/* HEADER */
+.email-header {
+  display: flex;
+  justify-content: center;
+}
+.email-input-search {
+  padding: 10px;
+}
+
+/* MAIN */
+.email-main {
+  display: flex;
+  justify-content: center;
+}
+.email-list {
+  margin-left: 20px;
 }
