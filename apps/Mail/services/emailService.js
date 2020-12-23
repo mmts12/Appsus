@@ -8,6 +8,18 @@ function query() {
     let emails = getDemoEmails()
     return Promise.resolve(emails)
 }
+getDateFormatted()
+function getDateFormatted() {
+    var hours = new Date().getHours()
+    var minutes = new Date().getMinutes()
+    // var zero = 0
+    // if (minutes < 10) {
+    //     minutes = `${zero, minutes} `;
+    //     console.log(minutes)
+    // }
+    return `${hours}:${minutes}`
+
+}
 
 function getDemoEmails() {
     return [
@@ -17,7 +29,7 @@ function getDemoEmails() {
             subject: 'Hello?',
             body: 'Pick up!',
             isRead: false,
-            sentAt: new Date().toString()
+            sentAt: getDateFormatted()
         },
         {
             id: utilService.makeId(),
@@ -25,7 +37,7 @@ function getDemoEmails() {
             subject: 'Wassap?',
             body: 'Pick up!',
             isRead: false,
-            sentAt: new Date().toString()
+            sentAt: getDateFormatted()
         },
         {
             id: utilService.makeId(),
@@ -33,7 +45,7 @@ function getDemoEmails() {
             subject: 'Wassap?',
             body: 'Pick up!',
             isRead: false,
-            sentAt: new Date().toString()
+            sentAt: getDateFormatted()
         }
     ]
 }

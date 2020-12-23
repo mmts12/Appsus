@@ -21,6 +21,7 @@ export class EmailApp extends React.Component {
         <main className="email-main">
           <div className="email-side-bar">SideBar</div>
           <div className="email-list">
+            <h1>Mail List</h1>
             <EmailList emails={emails} />
           </div>
         </main>

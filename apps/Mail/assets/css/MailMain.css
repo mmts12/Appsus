@@ -19,3 +19,21 @@ body {
 .email-list {
   margin-left: 20px;
 }
+
+/* EMAIL LIST */
+
+.email-list {
+  background-color: lightcoral;
+  width: 70vw;
+}
+.email-list li {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-bottom: 1px gray solid;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.email-list li:hover {
+  cursor: pointer;
+}
