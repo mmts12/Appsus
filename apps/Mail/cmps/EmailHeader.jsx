@@ -1,25 +1,19 @@
-import { emailService } from '../services/emailService.js';
 export class EmailHeader extends React.Component {
   state = {
-    readMails: '',
-    name: '',
-    emailsUnreaded: 0,
+    filterBy: { readMails: '', name: '' },
   };
-  componentDidMount() {
-    let emailsUnreaded = emailService.countUnreadEmails();
-    this.setState({ emailsUnreaded });
-  }
+  componentDidMount() {}
 
-  render() {
-    const handleInput = (ev) => {
-      const callback = () => {
-        const { setFilter } = this.props;
-        const filterBy = this.state;
-        setFilter(filterBy);
-      };
-      let readMails = ev.target.value;
-      this.setState({ readMails }, callback);
+  handleInput = (ev) => {
+    const callback = () => {
+      const { setFilter } = this.props;
+      const filterBy = this.state;
+      setFilter(filterBy);
     };
+    let readMails = ev.target.value;
+    this.setState({ readMails }, callback);
+  };
+  render() {
     return (
       <header className="email-header">
         <input
@@ -29,12 +23,12 @@ export class EmailHeader extends React.Component {
           id=""
           placeholder="Search mail"
         />
-        <select name="email-select" onChange={handleInput}>
+        <select name="email-select" onChange={this.handleInput}>
           <option value="All">All</option>
           <option value="Read">Read</option>
           <option value="Unread">Unread</option>
         </select>
-        <label>Uneaded Emails:{this.state.emailsUnreaded}</label>
+        <label>Unreaded Emails:{this.props.emailsUnreaded}</label>
       </header>
     );
   }

@@ -1,29 +1,52 @@
 import { utilService } from '../../../services/utilService.js';
 
 export const emailService = {
-    query, countUnreadEmails
+    query, countUnreadEmails, deleteEmail, addNewMail
 }
 
+var gEmails = getDemoEmails()
+
 function query() {
-    let emails = getDemoEmails()
-    return Promise.resolve(emails)
+    return Promise.resolve(gEmails)
 }
-getDateFormatted()
+
 function getDateFormatted() {
     var hours = new Date(1608731542).getHours()
     var minutes = new Date(1608731542).getMinutes()
-    // var zero = 0
-    // if (minutes < 10) {
-    //     minutes = `${zero, minutes} `;
-    //     console.log(minutes)
-    // }
+    return `${hours}:${minutes}`
+
+}
+
+function deleteEmail(id) {
+    console.log(id)
+    var emails = gEmails;
+    const filteredEmails = emails.filter((email) => { return email.id !== id })
+    console.log(filteredEmails)
+    gEmails = filteredEmails
+    return Promise.resolve(filteredEmails);
+}
+
+function addNewMail(mailToAdd) {
+    let newMail = {
+        id: utilService.makeId(),
+        senderName: mailToAdd.senderName,
+        subject: mailToAdd.subject,
+        body: mailToAdd.bodyTxt,
+        isRead: false,
+        sentAt: getDateFormattedNewMail(Date.now())
+    }
+    gEmails.unshift(newMail)
+}
+
+function getDateFormattedNewMail(timeStamp) {
+    var hours = new Date(timeStamp).getHours()
+    var minutes = new Date(timeStamp).getMinutes()
     return `${hours}:${minutes}`
 
 }
 
 function countUnreadEmails() {
-    var emails = getDemoEmails()
-    return emails.reduce((acc, email) => {
+    return gEmails.reduce((acc, email) => {
         if (!email.isRead) acc += 1
         return acc
     }, 0);
@@ -31,7 +54,7 @@ function countUnreadEmails() {
 
 
 function getDemoEmails() {
-    return [
+    var emails = [
         {
             id: utilService.makeId(),
             senderName: 'tair',
@@ -75,5 +98,6 @@ function getDemoEmails() {
             sentAt: getDateFormatted()
         }
     ]
+    return emails
 }
 
