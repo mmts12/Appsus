@@ -3,8 +3,7 @@ import { NoteImg } from "./notes/NoteImg.jsx";
 import { NoteTodos } from "./notes/NoteTodos.jsx";
 import { NoteVideo } from "./notes/NoteVideo.jsx";
 
-export function KeepDynamicCmp({ currCmp, info }) {
-  console.log(currCmp)
+export function KeepPreview({ currCmp, info }) {
   switch (currCmp) {
     case 'NoteText':
       return <NoteText info={info} />

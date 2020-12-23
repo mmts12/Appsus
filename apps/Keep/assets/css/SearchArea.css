@@ -6,7 +6,7 @@
     border: 1px solid grey;
     border-radius: .5em;
     box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
-    width: fit-content;
+    width: 500px;
 }
 
 .search-area * {
@@ -15,6 +15,8 @@
 
 .search-area input {
     border: none;
+    width: 300px;
+    margin-inline-end: 3em;
 }
 
 .search-area :focus {

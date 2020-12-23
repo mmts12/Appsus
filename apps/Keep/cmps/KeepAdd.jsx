@@ -10,6 +10,7 @@ export class KeepAdd extends React.Component {
         bgColor: 'whitesmoke',
       },
     },
+    placeholder: 'What\'s on your mind...',
   };
 
   componentDidMount() {
@@ -25,42 +26,41 @@ export class KeepAdd extends React.Component {
   onText = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteText';
-    copy.info = { txt: '' };
-    this.setState({ note: copy }, console.log('note:', this.state.note, 'copy', copy));
+    this.setState({ note: copy, placeholder: 'Enter your text...' });
   }
 
   onImg = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteImg';
-    this.setState({ note: copy }, console.log('note:', this.state.note, 'copy', copy));
+    this.setState({ note: copy, placeholder: 'Enter Image URL...' });
   }
 
   onVideo = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteVideo';
-    this.setState({ note: copy });
-    console.log(this.state.note);
+    this.setState({ note: copy, placeholder: 'Enter Video URL...' });
   }
 
   onAudio = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteAudio';
-    this.setState({ note: copy });
-    console.log(this.state.note);
+    this.setState({ note: copy, placeholder: 'I\'m listening...' });
   }
 
   onTodo = () => {
     const copy = { ...this.state.note };
-    copy.type = 'NoteText';
-    this.setState({ note: copy });
-    console.log(this.state.note);
+    copy.type = 'NoteTodo';
+    this.setState({ note: copy, placeholder: 'Enter comma seperated todo\'s...' });
   }
 
   onAdd = (ev) => {
     ev.preventDefault();
     const { note } = this.state;
-    this.setState({ info: '' });
     this.props.addNote(note);
+
+    const copy = { ...this.state.note };
+    copy.info = '';
+    this.setState({ note: copy , placeholder: 'Something else?..' });
   }
 
   render() {
@@ -70,13 +70,13 @@ export class KeepAdd extends React.Component {
           type="text"
           value={this.state.note.info}
           autoFocus
-          placeholder="What's on your mind.."
+          placeholder={this.state.placeholder}
           onChange={this.handleChange}
         />
         <i className="fas fa-font" onClick={this.onText}></i>
         <i className="far fa-image" onClick={this.onImg}></i>
         <i className="fab fa-youtube" onClick={this.onVideo}></i>
-        <i className="fas fa-volume-up" onClick={this.onAudio}></i>
+        {/* <i className="fas fa-volume-up" onClick={this.onAudio}></i> */}
         <i className="fas fa-list-ul" onClick={this.onTodo}></i>
       </form>
     );

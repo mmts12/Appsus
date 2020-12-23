@@ -1,5 +1,5 @@
 import { KeepAdd } from "./cmps/KeepAdd.jsx";
-import { KeepDynamicCmp } from "./cmps/KeepDynamicCmp.jsx";
+import { KeepList } from "./cmps/KeepList.jsx";
 import { keepService } from "./services/keepService.js";
 
 export class KeepApp extends React.Component {
@@ -27,8 +27,10 @@ export class KeepApp extends React.Component {
         keepService.addNote(newNote);
         this.loadNotes();
     }
+
     render() {
         const { notes } = this.state;
+        if (!notes || !notes.length) return <h1>Loading...</h1>;
         return (
             <section className="keep-app">
 
@@ -37,11 +39,7 @@ export class KeepApp extends React.Component {
                 </div>
 
                 <div className="notes-container flex wrap">
-                    {notes.map((note, idx) => {
-                        return <article className="note flex" key={idx}>
-                            <KeepDynamicCmp currCmp={note.type} info={note.info} />
-                        </article>
-                    })}
+                    <KeepList notes={notes} />
                 </div>
                 {/* FOR DEBUGGING PORPUSES DELETE WHEN FINISH */}
                 <hr />

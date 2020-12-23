@@ -3,7 +3,7 @@ export const keepService = {
     addNote,
 }
 
-let notes = [
+var notes = [
     {
         type: 'NoteText',
         isPinned: false,
@@ -43,8 +43,8 @@ let notes = [
         type: 'NoteVideo',
         isPinned: false,
         info: {
-            title: 'Get Up Stand Up',
-            url: 'https://www.youtube.com/embed/X2W3aG8uizA',
+            title: 'Stop Procratinating',
+            url: 'https://www.youtube.com/embed/_OQXFvOvEMA',
         },
         style: {
             bgColor: 'whitesmoke',
@@ -57,7 +57,17 @@ function query() {
 }
 
 function addNote(note) {
-    console.log('adding note:', note);
-    const noteToAdd = { ...note }
-    notes = [noteToAdd, ...notes]
+    if (note.type === 'NoteText') {
+        const txt = note.info;
+        note.info = { txt };
+    } else if (note.type === 'NoteImg' || 'NoteVideo') {
+        const url = note.info;
+        note.info = { url };
+    } else if (note.type === 'NoteList') {
+        const todos = (note.info).split();
+        console.log('todos',todos);
+        // note.info = { todos };
+    }
+    const noteToAdd = { ...note };
+    notes = [noteToAdd, ...notes];
 }
