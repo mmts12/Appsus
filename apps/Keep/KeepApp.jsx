@@ -22,7 +22,7 @@ export class KeepApp extends React.Component {
             <section className="keep-app">
                 <h1>Keep App</h1>
                 {notes.map((note, idx) => {
-                    <article key={idx}>
+                    return <article key={idx}>
                         <KeepDynamicCmp currCmp={note.type} info={note.info} />
                     </article>
                 })}

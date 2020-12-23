@@ -2,7 +2,7 @@ export function NoteTodos({ info }) {
     return (
         <ul>
             {info.todos.map((todo, idx) => {
-                <li key={idx}>
+                return <li key={idx}>
                     {todo.txt}
                 </li>
             })}

@@ -1,5 +1,5 @@
-@import './basics/Base.css';
-@import './basics/Fonts.css';
+@import './basics/base.css';
+@import './basics/fonts.css';
 @import './basics/HomePage.css';
 @import './basics/MainNav.css';
 @import './basics/UserMsg.css';
