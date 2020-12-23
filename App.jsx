@@ -1,4 +1,4 @@
-import { AppsHeader } from './apps/AppsHeader.jsx';
+import { AppsHeader } from './cmps/AppsHeader.jsx';
 import { MailApp } from './apps/Mail/MailApp.jsx';
 import { KeepApp } from './apps/Keep/KeepApp.jsx';
 import { About } from './pages/About.jsx';
@@ -6,7 +6,6 @@ import { Home } from './pages/home.jsx';
 
 const Router = ReactRouterDOM.HashRouter;
 const { Route, Switch } = ReactRouterDOM;
-
 
 // Simple React Component
 export function App() {
@@ -21,7 +20,7 @@ export function App() {
           <Route exact path="/" component={Home} />
         </Switch>
       </section>
-    </Router >
+    </Router>
   );
 }
 
