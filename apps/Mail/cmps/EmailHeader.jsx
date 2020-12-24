@@ -1,17 +1,21 @@
 export class EmailHeader extends React.Component {
   state = {
-    filterBy: { readMails: '', name: '' },
+    filterBy: { readMails: '', subject: '' },
   };
   componentDidMount() {}
 
   handleInput = (ev) => {
     const callback = () => {
       const { setFilter } = this.props;
-      const filterBy = this.state;
+      const filterBy = this.state.filterBy;
+      console.log(filterBy);
       setFilter(filterBy);
     };
-    let readMails = ev.target.value;
-    this.setState({ readMails }, callback);
+    let value = ev.target.value;
+    let name = ev.target.name;
+    let filterByCopy = this.state.filterBy;
+    filterByCopy[name] = value;
+    this.setState({ filterByCopy }, callback);
   };
   render() {
     return (
@@ -19,11 +23,12 @@ export class EmailHeader extends React.Component {
         <input
           className="email-input-search"
           type="text"
-          name=""
+          name="subject"
           id=""
           placeholder="Search mail"
+          onChange={this.handleInput}
         />
-        <select name="email-select" onChange={this.handleInput}>
+        <select name="readMails" onChange={this.handleInput}>
           <option value="All">All</option>
           <option value="Read">Read</option>
           <option value="Unread">Unread</option>

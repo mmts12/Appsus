@@ -1,4 +1,4 @@
-export function EmailPreview({ email, emailDelete }) {
+export function EmailPreview({ email, emailDelete, markStaredEmail }) {
   return (
     <li className={email.isRead ? 'read' : 'unread'}>
       <div>{email.senderName}</div>
@@ -11,6 +11,11 @@ export function EmailPreview({ email, emailDelete }) {
         >
           Delete
         </button>
+        <input
+          type="checkbox"
+          name="read/unread"
+          onChange={() => markStaredEmail(email)}
+        />
       </div>
     </li>
   );

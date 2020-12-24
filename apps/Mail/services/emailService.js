@@ -1,7 +1,7 @@
 import { utilService } from '../../../services/utilService.js';
 
 export const emailService = {
-    query, countUnreadEmails, deleteEmail, addNewMail
+    query, countUnreadEmails, deleteEmail, addNewMail, markEmail
 }
 
 var gEmails = getDemoEmails()
@@ -10,9 +10,9 @@ function query() {
     return Promise.resolve(gEmails)
 }
 
-function getDateFormatted() {
-    var hours = new Date(1608731542).getHours()
-    var minutes = new Date(1608731542).getMinutes()
+function getDateFormatted(timeStamp) {
+    var hours = new Date(timeStamp).getHours()
+    var minutes = new Date(timeStamp).getMinutes()
     return `${hours}:${minutes}`
 
 }
@@ -33,23 +33,28 @@ function addNewMail(mailToAdd) {
         subject: mailToAdd.subject,
         body: mailToAdd.bodyTxt,
         isRead: false,
-        sentAt: getDateFormattedNewMail(Date.now())
+        sentAt: getDateFormatted(Date.now()),
+        fullDate: new Date()
     }
     gEmails.unshift(newMail)
 }
 
-function getDateFormattedNewMail(timeStamp) {
-    var hours = new Date(timeStamp).getHours()
-    var minutes = new Date(timeStamp).getMinutes()
-    return `${hours}:${minutes}`
-
+function markEmail(markEmail) {
+    const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
+    markEmail.isRead = !markEmail.isRead;
+    gEmails[emailIdx] = markEmail;
+    return gEmails;
 }
+
+
 
 function countUnreadEmails() {
     return gEmails.reduce((acc, email) => {
         if (!email.isRead) acc += 1
         return acc
     }, 0);
+    // let unreadedEmailsInPrecents = `${emails / gEmails.length * 100}%`
+    // return unreadedEmailsInPrecents;
 }
 
 
@@ -63,7 +68,8 @@ function getDemoEmails() {
                     repository at mmts12/Appsus with git 
                     using git/2.29.2.windows.2.`,
             isRead: false,
-            sentAt: getDateFormatted()
+            sentAt: getDateFormatted(1608731542),
+            fullDate: new Date(1608731542)
         },
         {
             id: utilService.makeId(),
@@ -71,7 +77,8 @@ function getDemoEmails() {
             subject: 'jobs?',
             body: 'Your job alert for full stack engineer',
             isRead: true,
-            sentAt: getDateFormatted()
+            sentAt: getDateFormatted(1608731542),
+            fullDate: new Date(1608731542)
         },
         {
             id: utilService.makeId(),
@@ -79,7 +86,8 @@ function getDemoEmails() {
             subject: 'security?',
             body: 'You recently deleted 1249 files from your Dropbox',
             isRead: false,
-            sentAt: getDateFormatted()
+            sentAt: getDateFormatted(1608731542),
+            fullDate: new Date(1608731542)
         },
         {
             id: utilService.makeId(),
@@ -87,7 +95,8 @@ function getDemoEmails() {
             subject: 'store?',
             body: 'Your store credit is expiring soon',
             isRead: true,
-            sentAt: getDateFormatted()
+            sentAt: getDateFormatted(1608731542),
+            fullDate: new Date(1608731542)
         },
         {
             id: utilService.makeId(),
@@ -95,7 +104,8 @@ function getDemoEmails() {
             subject: 'signed-in?',
             body: 'Someone signed-in to your account',
             isRead: false,
-            sentAt: getDateFormatted()
+            sentAt: getDateFormatted(1608731542),
+            fullDate: new Date(1608731542)
         }
     ]
     return emails
