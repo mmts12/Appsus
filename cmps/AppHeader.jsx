@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM;
 
-export function AppsHeader() {
+export function AppHeader() {
   return (
     <nav className="apps-header">
       <ul className="clean-list flex space-around align-center">

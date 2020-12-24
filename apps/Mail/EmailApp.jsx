@@ -53,24 +53,17 @@ export class EmailApp extends React.Component {
     if (filterBy.readMails === 'Read') {
       return emails.filter((email) => {
         let emailTofilter = email.subject.toLowerCase();
-        return (
-          email.isRead && emailTofilter.includes(filter)
-          // email.isRead
-        );
+        return email.isRead && emailTofilter.includes(filter);
       });
     } else if (filterBy.readMails === 'Unread') {
       return emails.filter((email) => {
         let emailTofilter = email.subject.toLowerCase();
-        return (
-          !email.isRead && emailTofilter.includes(filter)
-          // !email.isRead
-        );
+        return !email.isRead && emailTofilter.includes(filter);
       });
     } else {
       return emails.filter((email) => {
         let emailTofilter = email.subject.toLowerCase();
         return emailTofilter.includes(filter);
-        // return email;
       });
     }
   };

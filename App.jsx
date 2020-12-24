@@ -1,4 +1,4 @@
-import { AppsHeader } from './cmps/AppsHeader.jsx';
+import { AppHeader } from './cmps/AppHeader.jsx';
 import { EmailApp } from './apps/Mail/EmailApp.jsx';
 import { KeepApp } from './apps/Keep/KeepApp.jsx';
 import { About } from './pages/About.jsx';
@@ -12,7 +12,7 @@ export function App() {
   return (
     <Router>
       <section className="app">
-        <AppsHeader />
+        <AppHeader />
         <Switch>
           <Route exact path="/mail" component={EmailApp} />
           <Route exact path="/keep" component={KeepApp} />

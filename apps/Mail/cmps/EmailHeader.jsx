@@ -8,7 +8,6 @@ export class EmailHeader extends React.Component {
     const callback = () => {
       const { setFilter } = this.props;
       const filterBy = this.state.filterBy;
-      console.log(filterBy);
       setFilter(filterBy);
     };
     let value = ev.target.value;

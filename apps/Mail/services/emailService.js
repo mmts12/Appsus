@@ -10,12 +10,27 @@ function query() {
     return Promise.resolve(gEmails)
 }
 
+// function getDateFormatted(timeStamp) {
+//     var hours = new Date(timeStamp).getHours()
+//     var minutes = new Date(timeStamp).getMinutes()
+//     return `${hours}:${minutes}`
+
+// }
+
+
+
 function getDateFormatted(timeStamp) {
-    var hours = new Date(timeStamp).getHours()
-    var minutes = new Date(timeStamp).getMinutes()
-    return `${hours}:${minutes}`
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    var date = new Date()
+    var hours = date.getHours()
+    var minutes = date.getMinutes()
+    var day = date.getDate()
+    return `${hours}:${minutes} ${day} ${monthNames[date.getMonth()]}`
 
 }
+// console.log(getDateFormattedxxxx(1608806501))
 
 function deleteEmail(id) {
     console.log(id)
@@ -91,7 +106,7 @@ function getDemoEmails() {
         },
         {
             id: utilService.makeId(),
-            senderName: 'moshe',
+            senderName: 'mais',
             subject: 'store?',
             body: 'Your store credit is expiring soon',
             isRead: true,
