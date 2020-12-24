@@ -34,7 +34,6 @@ export class EmailApp extends React.Component {
   countUnreadedeEmails = () => {
     let emailsUnreaded = emailService.countUnreadEmails();
     this.setState({ emailsUnreaded });
-    console.log(emailsUnreaded);
   };
 
   loadEmails = () => {
@@ -91,7 +90,8 @@ export class EmailApp extends React.Component {
 
   onMarkStaredEmail = (emailToMArk) => {
     const emails = emailService.markEmail(emailToMArk);
-    this.loadEmails();
+    this.setState({ emails });
+    this.countUnreadedeEmails();
   };
   render() {
     return (
