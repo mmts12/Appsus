@@ -9,7 +9,7 @@ export class EmailApp extends React.Component {
     emails: [],
     filterBy: {
       readMails: 'all',
-      name: '',
+      subject: '',
     },
     emailsUnreaded: 0,
     modalShow: false,
@@ -34,7 +34,6 @@ export class EmailApp extends React.Component {
   countUnreadedeEmails = () => {
     let emailsUnreaded = emailService.countUnreadEmails();
     this.setState({ emailsUnreaded });
-    console.log(emailsUnreaded);
   };
 
   loadEmails = () => {
@@ -50,11 +49,23 @@ export class EmailApp extends React.Component {
   getEmailsForDisplay = () => {
     const { filterBy } = this.state;
     var { emails } = this.state;
-    if (filterBy.readMails === 'Read')
-      return emails.filter((email) => email.isRead);
-    else if (filterBy.readMails === 'Unread')
-      return emails.filter((email) => !email.isRead);
-    else return emails;
+    const filter = filterBy.subject.toLowerCase();
+    if (filterBy.readMails === 'Read') {
+      return emails.filter((email) => {
+        let emailTofilter = email.subject.toLowerCase();
+        return email.isRead && emailTofilter.includes(filter);
+      });
+    } else if (filterBy.readMails === 'Unread') {
+      return emails.filter((email) => {
+        let emailTofilter = email.subject.toLowerCase();
+        return !email.isRead && emailTofilter.includes(filter);
+      });
+    } else {
+      return emails.filter((email) => {
+        let emailTofilter = email.subject.toLowerCase();
+        return emailTofilter.includes(filter);
+      });
+    }
   };
 
   onAddNewMail = (mail) => {
@@ -70,6 +81,11 @@ export class EmailApp extends React.Component {
     });
   };
 
+  onMarkStaredEmail = (emailToMArk) => {
+    const emails = emailService.markEmail(emailToMArk);
+    this.setState({ emails });
+    this.countUnreadedeEmails();
+  };
   render() {
     return (
       <section className="app-main">
@@ -81,6 +97,7 @@ export class EmailApp extends React.Component {
           <SideBar addEmail={this.onOpenModal} />
           <div className="email-list">
             <EmailList
+              markStaredEmail={this.onMarkStaredEmail}
               emailDelete={this.onDelete}
               emails={this.getEmailsForDisplay()}
             />

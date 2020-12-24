@@ -9,16 +9,23 @@ body {
 /* HEADER */
 .email-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+
+  margin-top: 20px;
 }
 .email-input-search {
   padding: 10px;
+}
+header select {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* MAIN */
 .email-main {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 .email-list {
   margin-left: 20px;
@@ -42,8 +49,8 @@ body {
 .email-list li:hover {
   cursor: pointer;
   opacity: 0.5;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 .email-list ul {
   margin: 0;
@@ -61,6 +68,17 @@ body {
 }
 .email-delete-btn {
   background-color: transparent;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.email-delete-btn:hover {
+  background-color: transparent;
+  background-color: blue;
+  color: whitesmoke;
+}
+input[type='checkbox']:hover {
+  cursor: pointer;
+  transform: scale(1.3);
 }
 
 /* MODAL ADD*/

@@ -13,9 +13,14 @@ export class ComposeModal extends React.Component {
 
   addNewMail = () => {
     let newMail = { ...this.state };
+    if (!newMail.senderName || !newMail.subject || !newMail.bodyTxt) return;
     this.props.onAddNewMail(newMail);
     this.props.closeModal();
   };
+
+  componentDidMount() {
+    this.nameInput.focus();
+  }
 
   render() {
     return (
@@ -24,9 +29,12 @@ export class ComposeModal extends React.Component {
           <label>
             Subject:
             <input
+              ref={(input) => {
+                this.nameInput = input;
+              }}
               type="text"
               name="subject"
-              placeholder="subject"
+              placeholder="Subject Here"
               onChange={this.handleInputs}
             />
           </label>
@@ -37,7 +45,7 @@ export class ComposeModal extends React.Component {
             <input
               type="text"
               name="senderName"
-              placeholder="send to"
+              placeholder="Send to"
               onChange={this.handleInputs}
             />
           </label>
@@ -46,6 +54,7 @@ export class ComposeModal extends React.Component {
           name="bodyTxt"
           cols="30"
           rows="5"
+          placeholder="Write your Email here"
           onChange={this.handleInputs}
         ></textarea>
         <button onClick={this.addNewMail}>Send</button>
