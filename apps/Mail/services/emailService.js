@@ -1,7 +1,7 @@
 import { utilService } from '../../../services/utilService.js';
 
 export const emailService = {
-    query, countUnreadEmails, deleteEmail, addNewMail, markEmail
+    query, countUnreadEmails, deleteEmail, addNewMail, markEmailRead
 }
 
 var gEmails = getDemoEmails()
@@ -10,27 +10,19 @@ function query() {
     return Promise.resolve(gEmails)
 }
 
-// function getDateFormatted(timeStamp) {
-//     var hours = new Date(timeStamp).getHours()
-//     var minutes = new Date(timeStamp).getMinutes()
-//     return `${hours}:${minutes}`
-
-// }
-
-
 
 function getDateFormatted(timeStamp) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    var date = new Date()
+    var date = new Date(timeStamp)
     var hours = date.getHours()
     var minutes = date.getMinutes()
     var day = date.getDate()
     return `${hours}:${minutes} ${day} ${monthNames[date.getMonth()]}`
 
 }
-// console.log(getDateFormattedxxxx(1608806501))
+
 
 function deleteEmail(id) {
     console.log(id)
@@ -54,11 +46,12 @@ function addNewMail(mailToAdd) {
     gEmails.unshift(newMail)
 }
 
-function markEmail(markEmail) {
+function markEmailRead(markEmail) {
     const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
+    console.log(emailIdx)
     markEmail.isRead = !markEmail.isRead;
     gEmails[emailIdx] = markEmail;
-    return gEmails;
+    return Promise.resolve(gEmails);
 }
 
 

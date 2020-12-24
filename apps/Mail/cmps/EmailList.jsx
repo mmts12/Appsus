@@ -1,6 +1,6 @@
 import { EmailPreview } from './EmailPreview.jsx';
 
-export function EmailList({ emails, emailDelete, markStaredEmail }) {
+export function EmailList({ emails, emailDelete, markReadEmail }) {
   return (
     <section>
       {console.log(emails)}
@@ -9,7 +9,7 @@ export function EmailList({ emails, emailDelete, markStaredEmail }) {
         {emails.map((email) => {
           return (
             <EmailPreview
-              markStaredEmail={markStaredEmail}
+              markReadEmail={markReadEmail}
               emailDelete={emailDelete}
               key={email.id}
               email={email}

@@ -25,9 +25,17 @@ export class ComposeModal extends React.Component {
   render() {
     return (
       <section className="email-add-section">
-        <div className="email-subject-input">
-          <label>
-            Subject:
+        <div className="new-email-header">
+          <label>New Massage</label>
+          <button
+            className="close-new-email-btn"
+            onClick={this.props.closeModal}
+          >
+            X
+          </button>
+        </div>
+        <div className="new-email-main-content">
+          <div className="email-subject-input">
             <input
               ref={(input) => {
                 this.nameInput = input;
@@ -37,28 +45,24 @@ export class ComposeModal extends React.Component {
               placeholder="Subject Here"
               onChange={this.handleInputs}
             />
-          </label>
-        </div>
-        <div className="email-to-input">
-          <label>
-            To:
+          </div>
+          <div className="email-to-input">
             <input
               type="text"
               name="senderName"
               placeholder="Send to"
               onChange={this.handleInputs}
             />
-          </label>
+          </div>
+          <textarea
+            name="bodyTxt"
+            cols="30"
+            rows="10"
+            placeholder="Write your Email here"
+            onChange={this.handleInputs}
+          ></textarea>
+          <button onClick={this.addNewMail}>Send</button>
         </div>
-        <textarea
-          name="bodyTxt"
-          cols="30"
-          rows="5"
-          placeholder="Write your Email here"
-          onChange={this.handleInputs}
-        ></textarea>
-        <button onClick={this.addNewMail}>Send</button>
-        <button onClick={this.props.closeModal}>Close</button>
       </section>
     );
   }

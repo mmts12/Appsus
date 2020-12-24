@@ -1,11 +1,15 @@
-export function EmailPreview({ email, emailDelete, markStaredEmail }) {
+export function EmailPreview({ email, emailDelete, markReadEmail }) {
   const markEmail = (email, ev) => {
     ev.stopPropagation();
-    markStaredEmail(email);
-    // () => markStaredEmail(email)
+    markReadEmail(email);
   };
   return (
     <li className={email.isRead ? 'read' : 'unread'}>
+      <input
+        type="checkbox"
+        // name="read/unread"
+        onChange={(ev) => markEmail(email, ev)}
+      />
       <div>{email.senderName}</div>
       <div>{email.subject}</div>
       <div className="flex email-actions">
@@ -16,11 +20,6 @@ export function EmailPreview({ email, emailDelete, markStaredEmail }) {
         >
           Delete
         </button>
-        <input
-          type="checkbox"
-          name="read/unread"
-          onChange={(ev) => markEmail(email, ev)}
-        />
       </div>
     </li>
   );

@@ -48,7 +48,7 @@ export class EmailApp extends React.Component {
 
   getEmailsForDisplay = () => {
     const { filterBy } = this.state;
-    var { emails } = this.state;
+    const { emails } = this.state;
     const filter = filterBy.subject.toLowerCase();
     if (filterBy.readMails === 'Read') {
       return emails.filter((email) => {
@@ -81,9 +81,10 @@ export class EmailApp extends React.Component {
     });
   };
 
-  onMarkStaredEmail = (emailToMArk) => {
-    const emails = emailService.markEmail(emailToMArk);
-    this.setState({ emails });
+  onReadEmail = (emailToMArk) => {
+    emailService.markEmailRead(emailToMArk).then(() => {
+      this.loadEmails();
+    });
     this.countUnreadedeEmails();
   };
   render() {
@@ -97,7 +98,7 @@ export class EmailApp extends React.Component {
           <SideBar addEmail={this.onOpenModal} />
           <div className="email-list">
             <EmailList
-              markStaredEmail={this.onMarkStaredEmail}
+              markReadEmail={this.onReadEmail}
               emailDelete={this.onDelete}
               emails={this.getEmailsForDisplay()}
             />
