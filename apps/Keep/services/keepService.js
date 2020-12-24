@@ -1,10 +1,18 @@
+import { utilService } from '../../../services/utilService.js';
+
 export const keepService = {
     query,
+    deleteNote,
+    pinnNote,
+    editNote,
+    changeBgcNote,
+    cloneNote,
     addNote,
 }
 
 var notes = [
     {
+        id: utilService.makeId(),
         type: 'NoteText',
         isPinned: false,
         info: {
@@ -15,6 +23,7 @@ var notes = [
         },
     },
     {
+        id: utilService.makeId(),
         type: 'NoteImg',
         isPinned: false,
         info: {
@@ -26,6 +35,7 @@ var notes = [
         },
     },
     {
+        id: utilService.makeId(),
         type: 'NoteTodos',
         isPinned: false,
         info: {
@@ -40,6 +50,7 @@ var notes = [
         },
     },
     {
+        id: utilService.makeId(),
         type: 'NoteVideo',
         isPinned: false,
         info: {
@@ -56,18 +67,69 @@ function query() {
     return notes;
 }
 
-function addNote(note) {
-    if (note.type === 'NoteText') {
-        const txt = note.info;
-        note.info = { txt };
-    } else if (note.type === 'NoteImg' || 'NoteVideo') {
-        const url = note.info;
-        note.info = { url };
-    } else if (note.type === 'NoteList') {
-        const todos = (note.info).split();
-        console.log('todos',todos);
-        // note.info = { todos };
-    }
-    const noteToAdd = { ...note };
-    notes = [noteToAdd, ...notes];
+function deleteNote(id) {
+    // console.log('service got id', id);
+    var notesToEdit = notes;
+    const filteredNotes = notesToEdit.filter(note => { return note.id !== id });
+    // console.log('filtered notes in service', filteredNotes);
+    notes = filteredNotes;
+    return notes;
 }
+
+function pinnNote(id) {
+    // console.log('service got id', id);
+    var notesToEdit = notes;
+    const foundNote = notesToEdit.findIndex(note => note.id === id);
+    notesToEdit[foundNote].isPinned = true;
+    const pinnedNote = notesToEdit[foundNote];
+    const filteredNotes = notesToEdit.filter(note => { return note.id !== id });
+    notes = [pinnedNote, ...filteredNotes];
+    return notes;
+}
+
+function editNote(id) {
+    console.log('service got id', id);
+}
+
+function changeBgcNote(id, color) {
+    var notesToEdit = notes;
+    const foundNote = notesToEdit.findIndex(note => note.id === id);
+    console.log('note to chande', notesToEdit[foundNote]);
+    notesToEdit[foundNote].style.bgColor = color;
+    notes = notesToEdit;
+    return notes;
+}
+
+function cloneNote(id) {
+    var notesToEdit = notes;
+    const foundNote = notesToEdit.find(note => note.id === id);
+    notes = [foundNote, ...notesToEdit];
+}
+
+function addNote(note) {
+    // console.log('service got note', note);
+    const newNote = {
+        id: utilService.makeId(),
+        ...note,
+    }
+    let noteToAdd = null;
+    switch (newNote.type) {
+        case 'NoteText':
+            console.log('new note', newNote);
+            noteToAdd = { ...newNote };
+            return notes = [noteToAdd, ...notes];
+        case 'NoteImg':
+            console.log('new note', newNote);
+            noteToAdd = { ...newNote };
+            return notes = [noteToAdd, ...notes];
+        case 'NoteVideo':
+            console.log('new note', newNote);
+            noteToAdd = { ...newNote };
+            return notes = [noteToAdd, ...notes];
+        case 'NoteList':
+            console.log('new note', newNote);
+            noteToAdd = { ...newNote };
+            return notes = [noteToAdd, ...notes];
+    }
+}
+

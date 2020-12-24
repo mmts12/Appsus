@@ -1,0 +1,65 @@
+.keep-edit {
+    width: 100%;
+}
+
+.keep-edit>* {
+    padding: .5em;
+    border-radius: 50%;
+}
+
+.keep-edit>*:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.keep-edit .colors-container {
+    position: absolute;
+    transform: translateY(110%);
+    width: fit-content;
+    padding: .2em;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
+    transition: .5s;
+}
+
+.btn-color {
+    width: 20px;
+    height: 20px;
+    margin: .2em;
+    border: 1px solid rgb(209, 208, 208);
+    border-radius: 50%;
+}
+
+.btn-color:hover {
+    border: 1px solid black;
+}
+
+.btn-color:focus {
+    outline: none;
+}
+
+.btn-color.white {
+    background-color: white;
+}
+
+.btn-color.brown {
+    background-color: rgb(230, 201, 168);
+}
+
+.btn-color.pink {
+    background-color: pink;
+}
+
+.btn-color.green {
+    background-color: rgb(164, 255, 164);
+}
+
+.btn-color.blue {
+    background-color: rgb(102, 179, 243);
+}
+
+.btn-color.cyan {
+    background-color: rgb(98, 248, 248);
+}

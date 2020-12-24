@@ -3,23 +3,26 @@ export class KeepAdd extends React.Component {
 
   state = {
     note: {
-      type: '',
+      type: 'NoteText',
       isPinned: false,
-      info: '',
+      info: { txt: '' },
       style: {
         bgColor: 'whitesmoke',
       },
     },
     placeholder: 'What\'s on your mind...',
+    isTitled: false,
   };
 
   componentDidMount() {
-    console.log(this.state.note);
+    // console.log(this.state.note);
   }
 
   handleChange = (ev) => {
     const copy = { ...this.state.note };
-    copy.info = ev.target.value;
+    if (copy.type === 'NoteText') copy.info.txt = ev.target.value;
+    else copy.info = [title = ev.target.value];
+    console.log('copy', copy);
     this.setState({ note: copy });
   }
 
@@ -32,7 +35,11 @@ export class KeepAdd extends React.Component {
   onImg = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteImg';
-    this.setState({ note: copy, placeholder: 'Enter Image URL...' });
+    this.setState({
+      note: copy,
+      placeholder: 'Enter Image URL...',
+      isTitled: true,
+    });
   }
 
   onVideo = () => {
@@ -55,20 +62,35 @@ export class KeepAdd extends React.Component {
 
   onAdd = (ev) => {
     ev.preventDefault();
+    // const copy = { ...this.state.note };
+    // if (typeof copy.info.txt === 'object') JSON.stringify(copy.info.txt);
+    // this.props.addNote(copy);
+
     const { note } = this.state;
+    console.log('child sent', note);
     this.props.addNote(note);
 
-    const copy = { ...this.state.note };
-    copy.info = '';
-    this.setState({ note: copy , placeholder: 'Something else?..' });
+    const noteCopy = { ...this.state.note };
+    noteCopy.info = { txt: '' };
+    this.setState({ note: noteCopy, placeholder: 'Something else?..' });
   }
 
   render() {
     return (
       <form onSubmit={this.onAdd}>
+        {/* <input hidden={!this.state.isTitled}
+          type='text'
+          name='title'
+          value={this.state.note.info.txt}
+          autoFocus
+          placeholder='Enter Title Here...'
+          onChange={this.handleChange}
+        />
+ */}
         <input
-          type="text"
-          value={this.state.note.info}
+          type='text'
+          name='title'
+          value={this.state.note.info.txt || ''}
           autoFocus
           placeholder={this.state.placeholder}
           onChange={this.handleChange}

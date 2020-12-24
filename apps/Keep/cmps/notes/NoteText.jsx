@@ -1,3 +1,4 @@
+
 export function NoteText({ info }) {
     return (
         <div className="text-card">
