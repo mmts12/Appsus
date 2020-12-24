@@ -1,4 +1,3 @@
-
 export class KeepAdd extends React.Component {
 
   state = {
@@ -7,10 +6,10 @@ export class KeepAdd extends React.Component {
       isPinned: false,
       info: { txt: '' },
       style: {
-        bgColor: 'whitesmoke',
+        bgColor: 'rgb(246, 221, 152)',
       },
     },
-    placeholder: 'What\'s on your mind...',
+    placeholder: 'Add Something...',
     isTitled: false,
   };
 
@@ -18,23 +17,21 @@ export class KeepAdd extends React.Component {
     // console.log(this.state.note);
   }
 
-  handleChange = (ev) => {
-    const copy = { ...this.state.note };
-    if (copy.type === 'NoteText') copy.info.txt = ev.target.value;
-    else copy.info = [title = ev.target.value];
-    console.log('copy', copy);
-    this.setState({ note: copy });
-  }
-
   onText = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteText';
-    this.setState({ note: copy, placeholder: 'Enter your text...' });
+    copy.info = { txt: '' };
+    this.setState({
+      note: copy,
+      placeholder: 'Enter your text...',
+      isTitled: false
+    });
   }
 
   onImg = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteImg';
+    copy.info = { title: '', url: '' };
     this.setState({
       note: copy,
       placeholder: 'Enter Image URL...',
@@ -45,7 +42,12 @@ export class KeepAdd extends React.Component {
   onVideo = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteVideo';
-    this.setState({ note: copy, placeholder: 'Enter Video URL...' });
+    copy.info = { title: '', url: '' };
+    this.setState({
+      note: copy,
+      placeholder: 'Enter Video URL...',
+      isTitled: true
+    });
   }
 
   onAudio = () => {
@@ -54,52 +56,79 @@ export class KeepAdd extends React.Component {
     this.setState({ note: copy, placeholder: 'I\'m listening...' });
   }
 
-  onTodo = () => {
+  onTodos = () => {
     const copy = { ...this.state.note };
-    copy.type = 'NoteTodo';
-    this.setState({ note: copy, placeholder: 'Enter comma seperated todo\'s...' });
+    copy.type = 'NoteTodos';
+    copy.info = { title: '', todos: '' };
+    this.setState({
+      note: copy,
+      placeholder: 'Enter comma seperated todo\'s...',
+      isTitled: true
+    }, () => { console.log('note format', this.state.note) });
+  }
+
+  handleChange = (ev) => {
+    const copy = { ...this.state.note };
+
+    switch (copy.type) {
+      case 'NoteText':
+        copy.info.txt = ev.target.value;
+        return this.setState({ note: copy });
+      case 'NoteImg':
+      case 'NoteVideo':
+        copy.info[ev.target.name] = ev.target.value;
+        return this.setState({ note: copy });
+      case 'NoteTodos':
+        copy.info[ev.target.name] = ev.target.value;
+        return this.setState({ note: copy });
+    }
   }
 
   onAdd = (ev) => {
     ev.preventDefault();
-    // const copy = { ...this.state.note };
-    // if (typeof copy.info.txt === 'object') JSON.stringify(copy.info.txt);
-    // this.props.addNote(copy);
+    const copy = { ...this.state.note };
+    console.log('child sent', copy);
+    this.props.addNote(copy);
+    this._resetNote();
+  }
 
-    const { note } = this.state;
-    console.log('child sent', note);
-    this.props.addNote(note);
-
-    const noteCopy = { ...this.state.note };
-    noteCopy.info = { txt: '' };
-    this.setState({ note: noteCopy, placeholder: 'Something else?..' });
+  _resetNote = () => {
+    const copy = { ...this.state.note };
+    copy.type = 'NoteText';
+    copy.info = { txt: '' };
+    this.setState({ note: copy, placeholder: 'Something else?..', isTitled: false });
   }
 
   render() {
+    const { txt, url, todos } = this.state.note.info;
+    const { type } = this.state.note;
+    const { isTitled } = this.state;
     return (
       <form onSubmit={this.onAdd}>
-        {/* <input hidden={!this.state.isTitled}
+        <input hidden={!isTitled}
           type='text'
           name='title'
-          value={this.state.note.info.txt}
+          value={this.state.note.info.title || ''}
           autoFocus
           placeholder='Enter Title Here...'
           onChange={this.handleChange}
         />
- */}
+
         <input
           type='text'
-          name='title'
-          value={this.state.note.info.txt || ''}
+          name={type === 'NoteTodos' ? 'todos' : 'url'}
+          value={txt || url || todos || ''}
           autoFocus
           placeholder={this.state.placeholder}
           onChange={this.handleChange}
         />
+
         <i className="fas fa-font" onClick={this.onText}></i>
         <i className="far fa-image" onClick={this.onImg}></i>
         <i className="fab fa-youtube" onClick={this.onVideo}></i>
         {/* <i className="fas fa-volume-up" onClick={this.onAudio}></i> */}
-        <i className="fas fa-list-ul" onClick={this.onTodo}></i>
+        <i className="fas fa-list-ul" onClick={this.onTodos}></i>
+        <button type="submit" style={{ display: 'none' }}></button>
       </form>
     );
   }

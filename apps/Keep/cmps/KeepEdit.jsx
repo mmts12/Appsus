@@ -1,4 +1,3 @@
-
 import { ColorCmp } from "./ColorCmps.jsx";
 
 export class KeepEdit extends React.Component {

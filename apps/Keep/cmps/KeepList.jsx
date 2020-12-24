@@ -4,7 +4,7 @@ import { KeepEdit } from "./KeepEdit.jsx"
 export function KeepList({ notes, onDeleteNote, onPinnNote, onEditNote, onChangeBgcNote, onCloneNote }) {
   // console.log('notes in list', notes);
   function showTools() {
-    console.log('hovering');
+    // console.log('hovering');
   }
   return notes.map((note, idx) => {
     return < article className="note flex col" key={idx} onMouseOver={showTools} style={{ backgroundColor: `${note.style.bgColor}` }}>

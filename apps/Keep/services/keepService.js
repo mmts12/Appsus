@@ -19,7 +19,7 @@ var notes = [
             txt: 'Whether You Think You Can Or Can\'t, You Are Right!',
         },
         style: {
-            bgColor: 'whitesmoke',
+            bgColor: 'rgb(246, 221, 152)',
         },
     },
     {
@@ -31,7 +31,19 @@ var notes = [
             url: 'https://i.picsum.photos/id/164/200/200.jpg?hmac=UA4QhIt441pdFJ6Uam2yCxzda_KjWgQgy8fYs_-NFEM',
         },
         style: {
-            bgColor: 'whitesmoke',
+            bgColor: 'rgb(246, 221, 152)',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            title: 'Chillax Man',
+            url: 'https://www.youtube.com/embed/CN_NPmKjWDM',
+        },
+        style: {
+            bgColor: 'rgb(246, 221, 152)',
         },
     },
     {
@@ -39,14 +51,12 @@ var notes = [
         type: 'NoteTodos',
         isPinned: false,
         info: {
-            title: 'Grocery List:',
-            todos: [
-                { txt: 'Milk', doneAt: null },
-                { txt: 'Eggs', doneAt: 188111111 },
-            ],
+            title: 'Don\'t Forget, even though it\'s sprint time:',
+            todos:
+                ['Eat', 'Take a shower', 'Keep it together', 'Smile', 'Have Fun'],
         },
         style: {
-            bgColor: 'whitesmoke',
+            bgColor: 'rgb(246, 221, 152)',
         },
     },
     {
@@ -58,7 +68,42 @@ var notes = [
             url: 'https://www.youtube.com/embed/_OQXFvOvEMA',
         },
         style: {
-            bgColor: 'whitesmoke',
+            bgColor: 'rgb(246, 221, 152)',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteTodos',
+        isPinned: false,
+        info: {
+            title: 'Grocery List:',
+            todos: ['Milk', 'Eggs'],
+        },
+        style: {
+            bgColor: 'rgb(246, 221, 152)',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteText',
+        isPinned: false,
+        info: {
+            txt: 'Everyone Wants To Eat, Few Are Willing To Hunt',
+        },
+        style: {
+            bgColor: 'rgb(246, 221, 152)',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            title: 'Best Trip Ever',
+            url: 'https://i.picsum.photos/id/1035/200/300.jpg?hmac=744aBtkMLjfDyn2TzkMxsFzw2T0L57TMlNGFlX-Qgq0',
+        },
+        style: {
+            bgColor: 'rgb(246, 221, 152)',
         },
     },
 ]
@@ -103,7 +148,9 @@ function changeBgcNote(id, color) {
 function cloneNote(id) {
     var notesToEdit = notes;
     const foundNote = notesToEdit.find(note => note.id === id);
-    notes = [foundNote, ...notesToEdit];
+    var clonedNote = { ...foundNote };
+    clonedNote.id = utilService.makeId();
+    notes = [clonedNote, ...notesToEdit];
 }
 
 function addNote(note) {
@@ -126,10 +173,12 @@ function addNote(note) {
             console.log('new note', newNote);
             noteToAdd = { ...newNote };
             return notes = [noteToAdd, ...notes];
-        case 'NoteList':
+        case 'NoteTodos':
+            var strTodos = newNote.info.todos;
+            var todos = strTodos.split(',');
+            newNote.info.todos = todos;
             console.log('new note', newNote);
-            noteToAdd = { ...newNote };
-            return notes = [noteToAdd, ...notes];
+            return notes = [newNote, ...notes];
     }
 }
 

@@ -5,7 +5,7 @@ export function NoteTodos({ info }) {
             <ul>
                 {info.todos.map((todo, idx) => {
                     return <li key={idx}>
-                        {todo.txt}
+                        {todo}
                     </li>
                 })}
             </ul>

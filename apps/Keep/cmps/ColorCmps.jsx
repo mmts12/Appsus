@@ -7,7 +7,7 @@ export class ColorCmp extends React.Component {
                     className='btn-color white' onClick={() => { this.props.onChangeBgcNote('white'), this.props.togglePallete() }}>
                 </button>
                 <button
-                    className='btn-color brown' onClick={() => { this.props.onChangeBgcNote('rgb(230, 201, 168)'), this.props.togglePallete() }}>
+                    className='btn-color yellow' onClick={() => { this.props.onChangeBgcNote('rgb(246, 221, 152)'), this.props.togglePallete() }}>
                 </button>
                 <button
                     className='btn-color pink' onClick={() => { this.props.onChangeBgcNote('pink'), this.props.togglePallete() }}>
