@@ -27,11 +27,35 @@ var notes = [
         type: 'NoteImg',
         isPinned: false,
         info: {
+            title: 'Sprint - Day 1',
+            url: 'https://media.giphy.com/media/1BXa2alBjrCXC/giphy.gif',
+        },
+        style: {
+            bgColor: 'pink',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
             title: 'Venice',
             url: 'https://i.picsum.photos/id/164/200/200.jpg?hmac=UA4QhIt441pdFJ6Uam2yCxzda_KjWgQgy8fYs_-NFEM',
         },
         style: {
             bgColor: 'rgb(246, 221, 152)',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            title: 'Sprint - Day 2',
+            url: 'https://media.giphy.com/media/zHd8x7Pik0Ftm/giphy.gif',
+        },
+        style: {
+            bgColor: 'rgb(164, 255, 164)',
         },
     },
     {
@@ -43,7 +67,7 @@ var notes = [
             url: 'https://www.youtube.com/embed/CN_NPmKjWDM',
         },
         style: {
-            bgColor: 'rgb(246, 221, 152)',
+            bgColor: 'rgb(167, 255, 235)',
         },
     },
     {
@@ -64,8 +88,20 @@ var notes = [
         type: 'NoteVideo',
         isPinned: false,
         info: {
-            title: 'Stop Procratinating',
-            url: 'https://www.youtube.com/embed/_OQXFvOvEMA',
+            title: 'Jungle',
+            url: 'https://www.youtube.com/embed/Vn8phH0k5HI',
+        },
+        style: {
+            bgColor: 'rgb(164, 255, 164)',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            title: 'Sprint - Day 3',
+            url: 'https://media.giphy.com/media/ToMjGpIYtgvMP38WTFC/giphy.gif',
         },
         style: {
             bgColor: 'rgb(246, 221, 152)',
@@ -80,7 +116,7 @@ var notes = [
             todos: ['Milk', 'Eggs'],
         },
         style: {
-            bgColor: 'rgb(246, 221, 152)',
+            bgColor: 'rgb(102, 179, 243)',
         },
     },
     {
@@ -91,7 +127,7 @@ var notes = [
             txt: 'Everyone Wants To Eat, Few Are Willing To Hunt',
         },
         style: {
-            bgColor: 'rgb(246, 221, 152)',
+            bgColor: 'whitesmoke',
         },
     },
     {
@@ -101,6 +137,18 @@ var notes = [
         info: {
             title: 'Best Trip Ever',
             url: 'https://i.picsum.photos/id/1035/200/300.jpg?hmac=744aBtkMLjfDyn2TzkMxsFzw2T0L57TMlNGFlX-Qgq0',
+        },
+        style: {
+            bgColor: 'pink',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            title: 'Sprint - Day 4',
+            url: 'https://media.giphy.com/media/KbBij8I7dRDZNEL5Az/giphy.gif',
         },
         style: {
             bgColor: 'rgb(246, 221, 152)',

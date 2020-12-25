@@ -1,3 +1,5 @@
+import { InfoCmp } from "./InfoCmp.jsx";
+
 export class KeepAdd extends React.Component {
 
   state = {
@@ -11,6 +13,10 @@ export class KeepAdd extends React.Component {
     },
     placeholder: 'Add Something...',
     isTitled: false,
+    infoDisplay: {
+      height: 0,
+      opacity: 0,
+    },
   };
 
   componentDidMount() {
@@ -34,7 +40,7 @@ export class KeepAdd extends React.Component {
     copy.info = { title: '', url: '' };
     this.setState({
       note: copy,
-      placeholder: 'Enter Image URL...',
+      placeholder: 'Enter Image Or GIF URL...',
       isTitled: true,
     });
   }
@@ -92,6 +98,12 @@ export class KeepAdd extends React.Component {
     this._resetNote();
   }
 
+  toggleInfo = () => {
+    var height = this.state.infoDisplay.height === 450 ? 0 : 450;
+    var opacity = this.state.infoDisplay.opacity === 1 ? 0 : 1;
+    this.setState({ infoDisplay: { opacity, height } });
+  }
+
   _resetNote = () => {
     const copy = { ...this.state.note };
     copy.type = 'NoteText';
@@ -105,29 +117,34 @@ export class KeepAdd extends React.Component {
     const { isTitled } = this.state;
     return (
       <form onSubmit={this.onAdd}>
+        <i className="fas fa-info" title="info" onClick={this.toggleInfo}></i>
+        <InfoCmp display={this.state.infoDisplay} toggleInfo={this.toggleInfo} />
+
         <input hidden={!isTitled}
-          type='text'
-          name='title'
+          type="text"
+          name="title"
           value={this.state.note.info.title || ''}
           autoFocus
-          placeholder='Enter Title Here...'
+          autocomplete="off"
+          placeholder="Enter Title Here..."
           onChange={this.handleChange}
         />
 
         <input
-          type='text'
-          name={type === 'NoteTodos' ? 'todos' : 'url'}
+          type="text"
+          name={type === "NoteTodos" ? "todos" : "url"}
           value={txt || url || todos || ''}
           autoFocus
+          autocomplete="off"
           placeholder={this.state.placeholder}
           onChange={this.handleChange}
         />
 
-        <i className="fas fa-font" onClick={this.onText}></i>
-        <i className="far fa-image" onClick={this.onImg}></i>
-        <i className="fab fa-youtube" onClick={this.onVideo}></i>
+        <i className="fas fa-font" title="Text" onClick={this.onText}></i>
+        <i className="far fa-image" title="Image" onClick={this.onImg}></i>
+        <i className="fab fa-youtube" title="Video" onClick={this.onVideo}></i>
         {/* <i className="fas fa-volume-up" onClick={this.onAudio}></i> */}
-        <i className="fas fa-list-ul" onClick={this.onTodos}></i>
+        <i className="fas fa-list-ul" title="List" onClick={this.onTodos}></i>
         <button type="submit" style={{ display: 'none' }}></button>
       </form>
     );

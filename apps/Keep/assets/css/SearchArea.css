@@ -7,7 +7,7 @@
     margin-bottom: 0;
     text-align: start;
     padding: .2em;
-    line-height: 47px;
+    height: 45px;
     background-color: white;
     border: 1px solid grey;
     border-radius: .5em;
@@ -16,6 +16,17 @@
 
 .search-area input {
     border: none;
+    width: 350px;
+}
+
+.search-area select {
+    border: none;
+    border-inline-start: 1px solid grey;
+    padding: .4em;
+}
+
+.search-area select:focus {
+    outline-style: none;
 }
 
 .search-area .search-btn {

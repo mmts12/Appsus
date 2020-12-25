@@ -2,7 +2,7 @@ import { KeepPreview } from "./KeepPreview.jsx"
 import { KeepEdit } from "./KeepEdit.jsx"
 
 export function KeepList({ notes, onDeleteNote, onPinnNote, onEditNote, onChangeBgcNote, onCloneNote }) {
-  // console.log('notes in list', notes);
+  console.log('notes in list', notes);
   function showTools() {
     // console.log('hovering');
   }

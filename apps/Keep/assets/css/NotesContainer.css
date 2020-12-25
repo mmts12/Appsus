@@ -1,14 +1,15 @@
-/* .notes-container {
-    flex-direction: column;
-    max-height: 800px;
-    overflow-wrap: unset;
-    clear: both;
-    position: relative;
-} */
+.notes-container {
+    column-count: 4;
+    column-gap: 1.5em;
+    margin: 0 auto 2em;
+    vertical-align: baseline;
+    text-align: center;
+}
 
 .notes-container .note {
-    width: 200px;
-    height: fit-content;
+    /* width: 200px;
+    height: fit-content; */
+    display: inline-block;
     border: 1px solid grey;
     border-radius: .2em;
     margin: 1em;
@@ -25,6 +26,11 @@
     text-align: center;
 }
 
+.todo-card li {
+    border-bottom: 1px solid grey;
+    padding: .5em 1em;
+}
+
 .img-card {
     text-align: center;
 }
@@ -36,4 +42,22 @@
 .video-card iframe {
     width: 100%;
     border-radius: 0.2em;
+}
+
+@media screen and (max-width: 900px) {
+    .notes-container {
+        column-count: 3;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .notes-container {
+        column-count: 2;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .notes-container {
+        column-count: 1;
+    }
 }
