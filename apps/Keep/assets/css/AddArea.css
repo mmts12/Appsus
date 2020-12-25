@@ -22,7 +22,6 @@
 .add-area input[name='title'] {
     width: 78%;
     border-bottom: 1px solid rgb(196, 194, 194);
-    /* font-weight: 600; */
 }
 
 .add-area :focus {

@@ -62,6 +62,12 @@ export class KeepApp extends React.Component {
         this.getNotesForDisplay();
     }
 
+    checkTodo = (todo,list) => {
+        // console.log('todo', todo);
+        keepService.checkTodo(todo,list);
+        this.loadNotes();
+    }
+
     getNotesForDisplay = () => {
         const filter = this.state.filterBy;
         const { notes } = this.state;
@@ -120,7 +126,7 @@ export class KeepApp extends React.Component {
 
                 <div className="notes-container">
                     <KeepList notes={this.getNotesForDisplay()} onDeleteNote={this.deleteNote} onPinnNote={this.pinnNote}
-                        onEditNote={this.editNote} onChangeBgcNote={this.changeBgcNote} onCloneNote={this.cloneNote} />
+                        onEditNote={this.editNote} onChangeBgcNote={this.changeBgcNote} onCloneNote={this.cloneNote} onDone={this.checkTodo} />
                 </div>
                 <NoteEdit display={modalDisplay} />
             </section>

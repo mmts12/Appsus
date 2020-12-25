@@ -8,6 +8,7 @@ export const keepService = {
     changeBgcNote,
     cloneNote,
     addNote,
+    checkTodo,
 }
 
 var notes = [
@@ -116,7 +117,7 @@ var notes = [
             todos: ['Milk', 'Eggs'],
         },
         style: {
-            bgColor: 'rgb(102, 179, 243)',
+            bgColor: 'rgb(174, 203, 250)',
         },
     },
     {
@@ -199,6 +200,20 @@ function cloneNote(id) {
     var clonedNote = { ...foundNote };
     clonedNote.id = utilService.makeId();
     notes = [clonedNote, ...notesToEdit];
+}
+
+function checkTodo(todo, list) {
+    var notesToEdit = notes;
+    const filteredNotes = notesToEdit.find(note => { return note.type === 'NoteTodos' && note.info.title === list.title });
+    console.log('relevent list', filteredNotes);
+    console.log('the list we got', list.todos);
+    console.log('the todo to change', todo);
+
+    const foundTask = list.todos.findIndex(task => task === todo);
+    console.log('the todo we found', foundTask);
+    console.log('list info', filteredNotes.info.todos[foundTask]);
+    filteredNotes.info.todos[foundTask].style.color = 'red';
+    // notes[filteredNotes] = filteredNotes;
 }
 
 function addNote(note) {

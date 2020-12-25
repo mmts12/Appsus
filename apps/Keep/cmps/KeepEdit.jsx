@@ -25,7 +25,7 @@ export class KeepEdit extends React.Component {
     const { display } = this.state;
     const { note, onDeleteNote, onPinnNote, onEditNote, onCloneNote } = this.props;
     return (
-      <div className="keep-edit flex space-between" style={{ display }}>
+      <div className="keep-tools flex space-between" style={{ display }}>
         <i className="fas fa-thumbtack" onClick={() => onPinnNote(note.id)}></i>
         <i className="fas fa-edit" onClick={() => onEditNote(note.id)}></i>
         <i className="fas fa-palette" onClick={this.togglePallete}></i>

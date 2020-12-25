@@ -20,7 +20,6 @@ export class KeepAdd extends React.Component {
   };
 
   componentDidMount() {
-    // console.log(this.state.note);
   }
 
   onText = () => {
@@ -125,7 +124,7 @@ export class KeepAdd extends React.Component {
           name="title"
           value={this.state.note.info.title || ''}
           autoFocus
-          autocomplete="off"
+          autoComplete="off"
           placeholder="Enter Title Here..."
           onChange={this.handleChange}
         />
@@ -135,7 +134,7 @@ export class KeepAdd extends React.Component {
           name={type === "NoteTodos" ? "todos" : "url"}
           value={txt || url || todos || ''}
           autoFocus
-          autocomplete="off"
+          autoComplete="off"
           placeholder={this.state.placeholder}
           onChange={this.handleChange}
         />
