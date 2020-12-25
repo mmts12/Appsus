@@ -23,7 +23,7 @@ export class SideBar extends React.Component {
               <span>Sent</span>
             </li>
 
-            <li>
+            <li onClick={this.props.onShowDeleted}>
               <i className="fas fa-trash"></i>
               <span>Trash</span>
             </li>

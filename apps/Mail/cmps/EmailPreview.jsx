@@ -5,6 +5,7 @@ export function EmailPreview({
   emailDelete,
   markReadEmail,
   onSetStars,
+  emailsToShow,
 }) {
   const markEmail = (email, ev) => {
     markReadEmail(email);
@@ -18,9 +19,7 @@ export function EmailPreview({
       <i
         onClick={(ev) => starMail()}
         className={
-          email.isStar
-            ? 'star-btn-active fas fa-star'
-            : 'star-btn far fa-star'
+          email.isStar ? 'star-btn-active fas fa-star' : 'star-btn far fa-star'
         }
       ></i>
       <Link to={`/mail/${email.id}`}>
@@ -32,10 +31,12 @@ export function EmailPreview({
           </div>
         </div>
       </Link>
-      <i
-        onClick={() => emailDelete(email.id)}
-        className="fas fa-trash-alt email-delete-btn"
-      ></i>
+      {emailsToShow !== 'deleted' && (
+        <i
+          onClick={() => emailDelete(email.id)}
+          className="fas fa-trash-alt email-delete-btn"
+        ></i>
+      )}
 
       <i
         onClick={(ev) => markEmail(email, ev)}

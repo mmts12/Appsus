@@ -16,6 +16,15 @@ export class EmailApp extends React.Component {
     emailsUnreaded: 0,
     modalShow: false,
     emailsToShow: 'inbox',
+    status: {},
+  };
+
+  getEmailsStatus = () => {
+    let status = {
+      starred: this.state.staredEmails.length,
+      sent: this.state.sentEmails.length,
+    };
+    this.setState({ status });
   };
 
   onOpenModal = () => {
@@ -31,6 +40,7 @@ export class EmailApp extends React.Component {
 
   componentDidMount() {
     this.loadEmails();
+
     this.countUnreadedeEmails();
   }
 
@@ -44,6 +54,10 @@ export class EmailApp extends React.Component {
       this.setState({ emails });
       this.getStaredEmailsForDisplay();
       this.getSentEmailsForDisplay();
+      this.getEmailsStatus();
+    });
+    emailService.getDeletedEmails().then((deletedEmails) => {
+      this.setState({ deletedEmails });
     });
   };
 
@@ -53,7 +67,7 @@ export class EmailApp extends React.Component {
 
   filterEmailTypeForDisplay = () => {
     let { emailsToShow } = this.state;
-    const { emails, staredEmails, sentEmails } = this.state;
+    const { emails, staredEmails, sentEmails, deletedEmails } = this.state;
     switch (emailsToShow) {
       case 'inbox':
         return emails;
@@ -61,6 +75,8 @@ export class EmailApp extends React.Component {
         return staredEmails;
       case 'sent':
         return sentEmails;
+      case 'deleted':
+        return deletedEmails;
     }
   };
 
@@ -115,6 +131,12 @@ export class EmailApp extends React.Component {
     emailsToShow = 'inbox';
     this.setState({ emailsToShow });
   };
+  onShowDeleted = () => {
+    if (this.state.deletedEmails.length === 0) return;
+    let emailsToShow = this.state.emailsToShow;
+    emailsToShow = 'deleted';
+    this.setState({ emailsToShow });
+  };
 
   onSetStars = () => {
     console.log('star');
@@ -124,13 +146,13 @@ export class EmailApp extends React.Component {
   onAddNewMail = (mail) => {
     emailService.addNewMail(mail);
     this.loadEmails();
-    this.countUnreadedeEmails();
+    // this.countUnreadedeEmails();
   };
 
   onDelete = (id) => {
     emailService.deleteEmail(id).then((emails) => {
       this.setState({ emails });
-      this.countUnreadedeEmails();
+      // this.countUnreadedeEmails();
     });
   };
 
@@ -138,17 +160,19 @@ export class EmailApp extends React.Component {
     emailService.markEmailRead(emailToMArk).then(() => {
       this.loadEmails();
     });
-    this.countUnreadedeEmails();
+    // this.countUnreadedeEmails();
   };
   render() {
     return (
       <section className="app-main main-layout">
         <EmailHeader
+          emailsStatus={this.state.status}
           emailsUnreaded={this.state.emailsUnreaded}
           setFilter={this.setFilter}
         />
         <main className="email-main flex space-between">
           <SideBar
+            onShowDeleted={this.onShowDeleted}
             onShowSentEmails={this.onShowSentEmails}
             onShowInbox={this.onShowInbox}
             onShowStarsEmails={this.onShowStarsEmails}
@@ -156,6 +180,7 @@ export class EmailApp extends React.Component {
           />
           <div className="email-list">
             <EmailList
+              emailsToShow={this.state.emailsToShow}
               onSetStars={this.onSetStars}
               markReadEmail={this.onReadEmail}
               emailDelete={this.onDelete}

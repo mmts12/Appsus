@@ -27,7 +27,7 @@ export class EmailDetails extends React.Component {
 
   onReadEmail = () => {
     let { email } = this.state;
-    emailService.markEmailRead(email);
+    emailService.markEmailReaded(email);
   };
 
   getNavIds = () => {

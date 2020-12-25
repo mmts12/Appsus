@@ -2,6 +2,7 @@ export class EmailHeader extends React.Component {
   state = {
     filterBy: { readMails: '', subject: '' },
   };
+
   componentDidMount() {}
 
   handleInput = (ev) => {
@@ -17,6 +18,8 @@ export class EmailHeader extends React.Component {
     this.setState({ filterByCopy }, callback);
   };
   render() {
+    const { emailsStatus } = this.props;
+    console.log(emailsStatus);
     return (
       <header
         className="flex space-between align-center"
@@ -44,6 +47,9 @@ export class EmailHeader extends React.Component {
         <i className="far fa-envelope unread-mails">
           {this.props.emailsUnreaded}
         </i>
+        <i className="far status-icon fa-star">{emailsStatus.starred}</i>
+
+        <i className="far status-icon fa-paper-plane">{emailsStatus.sent}</i>
       </header>
     );
   }

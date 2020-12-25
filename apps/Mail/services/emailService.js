@@ -1,7 +1,8 @@
 import { utilService } from '../../../services/utilService.js';
 
 export const emailService = {
-    query, countUnreadEmails, deleteEmail, addNewMail, markEmailRead, getEmailById, markEmailStared, getIdForNavigation
+    query, countUnreadEmails, deleteEmail, addNewMail, markEmailRead, getEmailById,
+    markEmailStared, getIdForNavigation, getDeletedEmails, markEmailReaded
 }
 
 var gEmails = getDemoEmails()
@@ -10,6 +11,9 @@ var gDeletedEmails = [];
 
 function query() {
     return Promise.resolve(gEmails)
+}
+function getDeletedEmails() {
+    return Promise.resolve(gDeletedEmails)
 }
 
 
@@ -34,13 +38,17 @@ function getIdForNavigation(currId) {
 
 }
 
-
+function addDeletedMailTolist(id) {
+    let email = _getEmailById(id)
+    gDeletedEmails.push(email);
+}
 
 function deleteEmail(id) {
-    console.log(id)
+    addDeletedMailTolist(id)
+    const emailIdx = gEmails.findIndex((email) => email.id === id)
     var emails = gEmails;
     const filteredEmails = emails.filter((email) => { return email.id !== id })
-    console.log(filteredEmails)
+    gEmails[emailIdx].isDeleted = true;
     gEmails = filteredEmails
     return Promise.resolve(filteredEmails);
 }
@@ -54,6 +62,7 @@ function addNewMail(mailToAdd) {
         isRead: false,
         isSent: true,
         isStar: false,
+        isDeleted: false,
         sentAt: getDateFormatted(Date.now()),
         fullDate: new Date(),
         senderEmail: 'mmts12@gmail.com'
@@ -64,6 +73,10 @@ function addNewMail(mailToAdd) {
 function getEmailById(mailId) {
     let email = gEmails.find((mail) => mail.id === mailId)
     return Promise.resolve(email);
+}
+function _getEmailById(mailId) {
+    let email = gEmails.find((mail) => mail.id === mailId)
+    return email;
 }
 
 function markEmailStared(id) {
@@ -78,6 +91,13 @@ function markEmailRead(markEmail) {
     const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
     console.log(emailIdx)
     markEmail.isRead = !markEmail.isRead;
+    gEmails[emailIdx] = markEmail;
+    return Promise.resolve(gEmails);
+}
+function markEmailReaded(markEmail) {
+    const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
+    console.log(emailIdx)
+    markEmail.isRead = true;
     gEmails[emailIdx] = markEmail;
     return Promise.resolve(gEmails);
 }
@@ -148,6 +168,7 @@ Actively recruiting`,
             isRead: false,
             isStar: true,
             isSent: false,
+            isDeleted: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'jobs-listings@linkedin.com',
@@ -173,6 +194,7 @@ Actively recruiting`,
             isRead: true,
             isStar: true,
             isSent: false,
+            isDeleted: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'no-reply@dropboxmail.com‏'
@@ -198,6 +220,7 @@ Thank you,
             isRead: false,
             isStar: false,
             isSent: false,
+            isDeleted: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'no-reply@t.mail.coursera.org'
@@ -228,6 +251,7 @@ Sincerely,
             isRead: true,
             isStar: false,
             isSent: false,
+            isDeleted: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'skrill@news.skrill.com'
@@ -253,6 +277,7 @@ The Quora Team`,
             isRead: false,
             isStar: false,
             isSent: false,
+            isDeleted: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'noreply@quora.com‏'
