@@ -5,6 +5,8 @@ export const emailService = {
 }
 
 var gEmails = getDemoEmails()
+var gDeletedEmails = [];
+
 
 function query() {
     return Promise.resolve(gEmails)
@@ -33,6 +35,7 @@ function getIdForNavigation(currId) {
 }
 
 
+
 function deleteEmail(id) {
     console.log(id)
     var emails = gEmails;
@@ -49,6 +52,8 @@ function addNewMail(mailToAdd) {
         subject: mailToAdd.subject,
         body: mailToAdd.bodyTxt,
         isRead: false,
+        isSent: true,
+        isStar: false,
         sentAt: getDateFormatted(Date.now()),
         fullDate: new Date(),
         senderEmail: 'mmts12@gmail.com'
@@ -72,7 +77,7 @@ function markEmailStared(id) {
 function markEmailRead(markEmail) {
     const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
     console.log(emailIdx)
-    markEmail.isRead = true;
+    markEmail.isRead = !markEmail.isRead;
     gEmails[emailIdx] = markEmail;
     return Promise.resolve(gEmails);
 }
@@ -142,9 +147,11 @@ Fiverr · Tel Aviv, IL
 Actively recruiting`,
             isRead: false,
             isStar: true,
+            isSent: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
-            senderEmail: 'jobs-listings@linkedin.com'
+            senderEmail: 'jobs-listings@linkedin.com',
+
         },
         {
             id: utilService.makeId(),
@@ -165,6 +172,7 @@ Actively recruiting`,
     The Dropbox Team	`,
             isRead: true,
             isStar: true,
+            isSent: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'no-reply@dropboxmail.com‏'
@@ -189,6 +197,7 @@ Thank you,
             `,
             isRead: false,
             isStar: false,
+            isSent: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'no-reply@t.mail.coursera.org'
@@ -218,6 +227,7 @@ Sincerely,
             `,
             isRead: true,
             isStar: false,
+            isSent: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'skrill@news.skrill.com'
@@ -242,6 +252,7 @@ Sincerely,
 The Quora Team`,
             isRead: false,
             isStar: false,
+            isSent: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'noreply@quora.com‏'

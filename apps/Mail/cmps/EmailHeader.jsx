@@ -2,7 +2,7 @@ export class EmailHeader extends React.Component {
   state = {
     filterBy: { readMails: '', subject: '' },
   };
-  componentDidMount() { }
+  componentDidMount() {}
 
   handleInput = (ev) => {
     const callback = () => {
@@ -18,7 +18,12 @@ export class EmailHeader extends React.Component {
   };
   render() {
     return (
-      <header className="flex space-between align-center" onSubmit={(ev)=>{ev.preventDefault()  }}>
+      <header
+        className="flex space-between align-center"
+        onSubmit={(ev) => {
+          ev.preventDefault();
+        }}
+      >
         <form className="email-header">
           <i className="fas fa-search search-btn">
             <input
@@ -36,7 +41,9 @@ export class EmailHeader extends React.Component {
             <option value="Unread">Unread</option>
           </select>
         </form>
-        <i class="far fa-envelope unread-mails">{this.props.emailsUnreaded}</i>
+        <i className="far fa-envelope unread-mails">
+          {this.props.emailsUnreaded}
+        </i>
       </header>
     );
   }

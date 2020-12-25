@@ -8,13 +8,14 @@ export class EmailApp extends React.Component {
   state = {
     emails: [],
     staredEmails: [],
+    sentEmails: [],
     filterBy: {
       readMails: 'all',
       subject: '',
     },
     emailsUnreaded: 0,
     modalShow: false,
-    isStaredShow: false,
+    emailsToShow: 'inbox',
   };
 
   onOpenModal = () => {
@@ -42,6 +43,7 @@ export class EmailApp extends React.Component {
     emailService.query().then((emails) => {
       this.setState({ emails });
       this.getStaredEmailsForDisplay();
+      this.getSentEmailsForDisplay();
     });
   };
 
@@ -49,9 +51,22 @@ export class EmailApp extends React.Component {
     this.setState({ filterBy });
   };
 
+  filterEmailTypeForDisplay = () => {
+    let { emailsToShow } = this.state;
+    const { emails, staredEmails, sentEmails } = this.state;
+    switch (emailsToShow) {
+      case 'inbox':
+        return emails;
+      case 'stared':
+        return staredEmails;
+      case 'sent':
+        return sentEmails;
+    }
+  };
+
   getEmailsForDisplay = () => {
-    const { filterBy, staredEmails, emails } = this.state;
-    const emailsForDisplay = this.state.isStaredShow ? staredEmails : emails;
+    const { filterBy } = this.state;
+    const emailsForDisplay = this.filterEmailTypeForDisplay();
     const filter = filterBy.subject.toLowerCase();
     if (filterBy.readMails === 'Read') {
       return emailsForDisplay.filter((email) => {
@@ -71,16 +86,34 @@ export class EmailApp extends React.Component {
     }
   };
 
+  getSentEmailsForDisplay = () => {
+    const { emails } = this.state;
+    let sentEmails = emails.filter((email) => email.isSent);
+    this.setState({ sentEmails });
+  };
+
   getStaredEmailsForDisplay = () => {
     const { emails } = this.state;
     let staredEmails = emails.filter((email) => email.isStar);
     this.setState({ staredEmails });
   };
 
+  onShowSentEmails = () => {
+    if (this.state.sentEmails.length === 0) return;
+    let emailsToShow = this.state.emailsToShow;
+    emailsToShow = 'sent';
+    this.setState({ emailsToShow });
+  };
+
   onShowStarsEmails = () => {
-    let isStaredShow = this.state.isStaredShow;
-    isStaredShow = !isStaredShow;
-    this.setState({ isStaredShow });
+    let emailsToShow = this.state.emailsToShow;
+    emailsToShow = 'stared';
+    this.setState({ emailsToShow });
+  };
+  onShowInbox = () => {
+    let emailsToShow = this.state.emailsToShow;
+    emailsToShow = 'inbox';
+    this.setState({ emailsToShow });
   };
 
   onSetStars = () => {
@@ -116,6 +149,8 @@ export class EmailApp extends React.Component {
         />
         <main className="email-main flex space-between">
           <SideBar
+            onShowSentEmails={this.onShowSentEmails}
+            onShowInbox={this.onShowInbox}
             onShowStarsEmails={this.onShowStarsEmails}
             addEmail={this.onOpenModal}
           />
