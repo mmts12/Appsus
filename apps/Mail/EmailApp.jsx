@@ -109,12 +109,12 @@ export class EmailApp extends React.Component {
   };
   render() {
     return (
-      <section className="app-main">
+      <section className="app-main main-layout">
         <EmailHeader
           emailsUnreaded={this.state.emailsUnreaded}
           setFilter={this.setFilter}
         />
-        <main className="email-main">
+        <main className="email-main flex space-between">
           <SideBar
             onShowStarsEmails={this.onShowStarsEmails}
             addEmail={this.onOpenModal}

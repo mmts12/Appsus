@@ -14,17 +14,6 @@ export const keepService = {
 var notes = [
     {
         id: utilService.makeId(),
-        type: 'NoteText',
-        isPinned: false,
-        info: {
-            txt: 'Whether You Think You Can Or Can\'t, You Are Right!',
-        },
-        style: {
-            bgColor: 'rgb(246, 221, 152)',
-        },
-    },
-    {
-        id: utilService.makeId(),
         type: 'NoteImg',
         isPinned: false,
         info: {
@@ -33,6 +22,17 @@ var notes = [
         },
         style: {
             bgColor: 'pink',
+        },
+    },
+    {
+        id: utilService.makeId(),
+        type: 'NoteText',
+        isPinned: false,
+        info: {
+            txt: 'Whether You Think You Can Or Can\'t, You Are Right!',
+        },
+        style: {
+            bgColor: 'rgb(246, 221, 152)',
         },
     },
     {
@@ -78,7 +78,13 @@ var notes = [
         info: {
             title: 'Don\'t Forget, even though it\'s sprint time:',
             todos:
-                ['Eat', 'Take a shower', 'Keep it together', 'Smile', 'Have Fun'],
+                [
+                    { txt: 'Eat', isDone: true },
+                    { txt: 'Take a shower', isDone: false },
+                    { txt: 'Keep it together', isDone: false },
+                    { txt: 'Smile', isDone: true },
+                    { txt: 'Have Fun', isDone: false },
+                ]
         },
         style: {
             bgColor: 'rgb(246, 221, 152)',
@@ -93,7 +99,7 @@ var notes = [
             url: 'https://www.youtube.com/embed/Vn8phH0k5HI',
         },
         style: {
-            bgColor: 'rgb(164, 255, 164)',
+            bgColor: 'rgb(167, 255, 235)',
         },
     },
     {
@@ -114,7 +120,11 @@ var notes = [
         isPinned: false,
         info: {
             title: 'Grocery List:',
-            todos: ['Milk', 'Eggs'],
+            todos: [
+                { txt: 'Milk', isDone: false },
+                { txt: 'Eggs', isDone: true },
+                { txt: 'Water', isDone: false },
+            ]
         },
         style: {
             bgColor: 'rgb(174, 203, 250)',
@@ -239,7 +249,13 @@ function addNote(note) {
         case 'NoteTodos':
             var strTodos = newNote.info.todos;
             var todos = strTodos.split(',');
-            newNote.info.todos = todos;
+            var formatedTodos = todos.map(todo => {
+                return {
+                    txt: todo,
+                    isDone: false,
+                }
+            })
+            newNote.info.todos = formatedTodos;
             console.log('new note', newNote);
             return notes = [newNote, ...notes];
     }

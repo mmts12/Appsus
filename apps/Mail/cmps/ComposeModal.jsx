@@ -24,7 +24,7 @@ export class ComposeModal extends React.Component {
 
   render() {
     return (
-      <section className="email-add-section">
+      <section className="email-add-section" >
         <div className="new-email-header">
           <label>New Massage</label>
           <button

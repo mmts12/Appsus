@@ -26,6 +26,11 @@
 .todo-card li {
     border-bottom: 1px solid grey;
     padding: .5em 1em;
+    cursor: pointer;
+}
+
+.todo-card li.checked {
+    text-decoration: line-through;
 }
 
 .img-card {

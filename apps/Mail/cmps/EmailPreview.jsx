@@ -15,32 +15,14 @@ export function EmailPreview({
   };
   return (
     <li className={email.isRead ? 'read' : 'unread'}>
-      <div>
-        {/* <input
-          type="checkbox"
-          checked={email.isRead ? true : false}
-          onChange={(ev) => markEmail(email, ev)}
-        /> */}
-
-        <i
-          onClick={(ev) => starMail()}
-          className={
-            email.isStar
-              ? 'star-btn-active far fa-star'
-              : 'star-btn far fa-star'
-          }
-        ></i>
-        <i
-          onClick={() => emailDelete(email.id)}
-          class="far fa-trash-alt email-delete-btn"
-        ></i>
-        {/* <button
-          className="email-delete-btn"
-          onClick={() => emailDelete(email.id)}
-        >
-          Delete
-        </button> */}
-      </div>
+      <i
+        onClick={(ev) => starMail()}
+        className={
+          email.isStar
+            ? 'star-btn-active fas fa-star'
+            : 'star-btn far fa-star'
+        }
+      ></i>
       <Link to={`/mail/${email.id}`}>
         <div className="email-details-container">
           <div className="">{email.senderName}</div>
@@ -50,6 +32,25 @@ export function EmailPreview({
           </div>
         </div>
       </Link>
+      <i
+        onClick={() => emailDelete(email.id)}
+        className="fas fa-trash-alt email-delete-btn"
+      ></i>
+
+      <i
+        onClick={(ev) => markEmail(email, ev)}
+        className={
+          email.isRead
+            ? 'envelope fas fa-envelope-open'
+            : 'envelope fas fa-envelope'
+        }
+      ></i>
+
+      {/* <input
+        type="checkbox"
+        checked={email.isRead ? true : false}
+        onChange={(ev) => markEmail(email, ev)}
+      /> */}
     </li>
   );
 }

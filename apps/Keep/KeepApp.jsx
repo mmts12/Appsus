@@ -62,9 +62,9 @@ export class KeepApp extends React.Component {
         this.getNotesForDisplay();
     }
 
-    checkTodo = (todo,list) => {
+    checkTodo = (todo, list) => {
         // console.log('todo', todo);
-        keepService.checkTodo(todo,list);
+        keepService.checkTodo(todo, list);
         this.loadNotes();
     }
 
@@ -74,42 +74,32 @@ export class KeepApp extends React.Component {
         console.log('filtering by', filter);
         switch (filter.type) {
             case 'NoteText':
-                // if (!filter.text) return this.state.notes;
                 return notes.filter(note => {
                     // console.log('note', filter.text);
                     let txt = note.info.txt;
                     return note.type === ('NoteText') && txt.toLowerCase().includes(filter.text);
-                    return this.state.notes;
                 })
             case 'NoteImg':
-                // if (!filter.text) return this.state.notes;
                 return notes.filter(note => {
                     console.log('note', note);
                     let txt = note.info.title;
                     return note.type === ('NoteImg') && txt.toLowerCase().includes(filter.text);
-                    return this.state.notes;
                 })
             case 'NoteVideo':
-                // if (!filter.text) return this.state.notes;
                 return notes.filter(note => {
                     let txt = note.info.title;
                     return note.type === ('NoteVideo') && txt.toLowerCase().includes(filter.text);
-                    return this.state.notes;
                 })
             case 'NoteTodos':
-                // if (!filter.text) return this.state.notes;
                 return notes.filter(note => {
                     let txt = note.info.title;
                     return note.type === ('NoteTodos') && txt.toLowerCase().includes(filter.text);
-                    return this.state.notes;
                 })
             case '':
             case 'All':
-                // if (!filter.text) return this.state.notes;
                 return notes.filter(note => {
                     let txt = note.info.title || note.info.txt;
                     return txt.toLowerCase().includes(filter.text);
-                    return this.state.notes;
                 })
         }
     }
