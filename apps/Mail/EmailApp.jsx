@@ -7,12 +7,14 @@ import { ComposeModal } from './cmps/ComposeModal.jsx';
 export class EmailApp extends React.Component {
   state = {
     emails: [],
+    staredEmails: [],
     filterBy: {
       readMails: 'all',
       subject: '',
     },
     emailsUnreaded: 0,
     modalShow: false,
+    isStaredShow: false,
   };
 
   onOpenModal = () => {
@@ -39,6 +41,7 @@ export class EmailApp extends React.Component {
   loadEmails = () => {
     emailService.query().then((emails) => {
       this.setState({ emails });
+      this.getStaredEmailsForDisplay();
     });
   };
 
@@ -47,25 +50,42 @@ export class EmailApp extends React.Component {
   };
 
   getEmailsForDisplay = () => {
-    const { filterBy } = this.state;
-    const { emails } = this.state;
+    const { filterBy, staredEmails, emails } = this.state;
+    const emailsForDisplay = this.state.isStaredShow ? staredEmails : emails;
     const filter = filterBy.subject.toLowerCase();
     if (filterBy.readMails === 'Read') {
-      return emails.filter((email) => {
+      return emailsForDisplay.filter((email) => {
         let emailTofilter = email.subject.toLowerCase();
         return email.isRead && emailTofilter.includes(filter);
       });
     } else if (filterBy.readMails === 'Unread') {
-      return emails.filter((email) => {
+      return emailsForDisplay.filter((email) => {
         let emailTofilter = email.subject.toLowerCase();
         return !email.isRead && emailTofilter.includes(filter);
       });
     } else {
-      return emails.filter((email) => {
+      return emailsForDisplay.filter((email) => {
         let emailTofilter = email.subject.toLowerCase();
         return emailTofilter.includes(filter);
       });
     }
+  };
+
+  getStaredEmailsForDisplay = () => {
+    const { emails } = this.state;
+    let staredEmails = emails.filter((email) => email.isStar);
+    this.setState({ staredEmails });
+  };
+
+  onShowStarsEmails = () => {
+    let isStaredShow = this.state.isStaredShow;
+    isStaredShow = !isStaredShow;
+    this.setState({ isStaredShow });
+  };
+
+  onSetStars = () => {
+    console.log('star');
+    this.loadEmails();
   };
 
   onAddNewMail = (mail) => {
@@ -95,9 +115,13 @@ export class EmailApp extends React.Component {
           setFilter={this.setFilter}
         />
         <main className="email-main">
-          <SideBar addEmail={this.onOpenModal} />
+          <SideBar
+            onShowStarsEmails={this.onShowStarsEmails}
+            addEmail={this.onOpenModal}
+          />
           <div className="email-list">
             <EmailList
+              onSetStars={this.onSetStars}
               markReadEmail={this.onReadEmail}
               emailDelete={this.onDelete}
               emails={this.getEmailsForDisplay()}

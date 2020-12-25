@@ -1,6 +1,6 @@
 import { EmailPreview } from './EmailPreview.jsx';
 
-export function EmailList({ emails, emailDelete, markReadEmail }) {
+export function EmailList({ emails, emailDelete, markReadEmail, onSetStars }) {
   return (
     <section>
       {console.log(emails)}
@@ -9,6 +9,7 @@ export function EmailList({ emails, emailDelete, markReadEmail }) {
         {emails.map((email) => {
           return (
             <EmailPreview
+              onSetStars={onSetStars}
               markReadEmail={markReadEmail}
               emailDelete={emailDelete}
               key={email.id}

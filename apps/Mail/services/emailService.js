@@ -1,7 +1,7 @@
 import { utilService } from '../../../services/utilService.js';
 
 export const emailService = {
-    query, countUnreadEmails, deleteEmail, addNewMail, markEmailRead, getEmailById
+    query, countUnreadEmails, deleteEmail, addNewMail, markEmailRead, getEmailById, markEmailStared, getIdForNavigation
 }
 
 var gEmails = getDemoEmails()
@@ -20,6 +20,15 @@ function getDateFormatted(timeStamp) {
     var minutes = date.getMinutes()
     var day = date.getDate()
     return `${hours}:${minutes} ${day} ${monthNames[date.getMonth()]}`
+
+}
+
+function getIdForNavigation(currId) {
+    const emailIdx = gEmails.findIndex((email) => email.id === currId)
+    let navId = {}
+    if (gEmails[emailIdx + 1]) navId.next = gEmails[emailIdx + 1].id
+    if (gEmails[emailIdx - 1]) navId.prev = gEmails[emailIdx - 1].id
+    return Promise.resolve(navId);
 
 }
 
@@ -52,10 +61,18 @@ function getEmailById(mailId) {
     return Promise.resolve(email);
 }
 
+function markEmailStared(id) {
+    const emailIdx = gEmails.findIndex((email) => email.id === id)
+    let emails = gEmails;
+    emails[emailIdx].isStar = !emails[emailIdx].isStar;
+    gEmails = emails;
+
+}
+
 function markEmailRead(markEmail) {
     const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
     console.log(emailIdx)
-    markEmail.isRead = !markEmail.isRead;
+    markEmail.isRead = true;
     gEmails[emailIdx] = markEmail;
     return Promise.resolve(gEmails);
 }
@@ -124,6 +141,7 @@ Fiverr · Tel Aviv, IL
 
 Actively recruiting`,
             isRead: false,
+            isStar: true,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'jobs-listings@linkedin.com'
@@ -146,6 +164,7 @@ Actively recruiting`,
     Thanks,
     The Dropbox Team	`,
             isRead: true,
+            isStar: true,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'no-reply@dropboxmail.com‏'
@@ -169,6 +188,7 @@ Privacy Notice: Updated for increased clarity of definitions and learner process
 Thank you,
             `,
             isRead: false,
+            isStar: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'no-reply@t.mail.coursera.org'
@@ -197,6 +217,7 @@ If you have any questions, please contact us.
 Sincerely,
             `,
             isRead: true,
+            isStar: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'skrill@news.skrill.com'
@@ -220,6 +241,7 @@ Thank you for being a part of Quora.
 Sincerely,
 The Quora Team`,
             isRead: false,
+            isStar: false,
             sentAt: getDateFormatted(1608731542),
             fullDate: new Date(1608731542),
             senderEmail: 'noreply@quora.com‏'

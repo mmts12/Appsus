@@ -1,16 +1,32 @@
+import { emailService } from '../services/emailService.js';
 const { Link } = ReactRouterDOM;
-export function EmailPreview({ email, emailDelete, markReadEmail }) {
+export function EmailPreview({
+  email,
+  emailDelete,
+  markReadEmail,
+  onSetStars,
+}) {
   const markEmail = (email, ev) => {
     markReadEmail(email);
+  };
+  const starMail = () => {
+    emailService.markEmailStared(email.id);
+    onSetStars();
   };
   return (
     <li className={email.isRead ? 'read' : 'unread'}>
       <div>
-        <input
+        {/* <input
           type="checkbox"
           checked={email.isRead ? true : false}
           onChange={(ev) => markEmail(email, ev)}
-        />
+        /> */}
+        <button
+          className={email.isStar ? 'star-btn-active' : 'star-btn'}
+          onClick={(ev) => starMail()}
+        >
+          <i className="far fa-star"></i>
+        </button>
         <button
           className="email-delete-btn"
           onClick={() => emailDelete(email.id)}
