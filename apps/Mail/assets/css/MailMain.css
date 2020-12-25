@@ -41,7 +41,7 @@ header select {
   justify-content: space-between;
   list-style: none;
   border-bottom: 1px gray solid;
-  padding: 10px;
+  padding: 15px;
   color: black;
 }
 
@@ -66,8 +66,9 @@ header select {
   background-color: #ded9d9;
 }
 .star-btn-active {
-  background-color: gold;
+  color: #e7c046;
 }
+
 .email-delete-btn {
   background-color: transparent;
   margin-left: 5px;
@@ -76,8 +77,7 @@ header select {
 }
 .email-delete-btn:hover {
   background-color: transparent;
-  background-color: blue;
-  color: whitesmoke;
+  text-shadow: 0 0 10px red;
 }
 input[type='checkbox']:hover {
   cursor: pointer;
@@ -94,6 +94,9 @@ li a {
 }
 
 /* MODAL ADD*/
+.email-add-section-show {
+  transform: translateY(0%);
+}
 
 .email-add-section {
   position: fixed;
@@ -103,6 +106,8 @@ li a {
   background-color: rgba(242, 245, 245, 0.8);
   color: black;
   width: 60vw;
+  /* transform: translateY(100%); */
+  /* transition: all 2s; */
   /* background-color: #fff; */
 }
 .new-email-header {
@@ -183,4 +188,20 @@ h3 {
 .email-side-bar {
   display: flex;
   flex-direction: column;
+}
+.email-side-bar .btn-compose {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.email-side-bar .btn-compose:hover {
+  cursor: pointer;
+  text-shadow: 0 0 10px blue;
+}
+.starred-btn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 }

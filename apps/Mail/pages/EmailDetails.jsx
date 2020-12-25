@@ -7,6 +7,10 @@ export class EmailDetails extends React.Component {
     prevEmail: '',
   };
   componentDidMount() {
+    this.loadMail();
+  }
+
+  loadMail() {
     const { mailId } = this.props.match.params;
     if (!mailId) return;
     emailService.getEmailById(mailId).then((email) => {
@@ -16,13 +20,14 @@ export class EmailDetails extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.mailId !== this.props.match.params.mailId)
+      this.loadMail();
+  }
+
   onReadEmail = () => {
     let { email } = this.state;
     emailService.markEmailRead(email);
-  };
-
-  goBack = () => {
-    this.props.history.goBack();
   };
 
   getNavIds = () => {
@@ -46,7 +51,9 @@ export class EmailDetails extends React.Component {
             <h3>from: {email.senderEmail}</h3>
             <div>{`${email.fullDate}`}</div>
           </div>
-          <button onClick={this.goBack}>Back</button>
+          <Link to="/mail">
+            <button>Back to Emails</button>
+          </Link>
           <pre>{this.state.email.body}</pre>
         </div>
         {nextEmail && (

@@ -2,8 +2,16 @@ export class SideBar extends React.Component {
   render() {
     return (
       <section className="email-side-bar">
-        <button onClick={this.props.addEmail}>+ Compose</button>
-        <button onClick={this.props.onShowStarsEmails}>Starred</button>
+        <button>
+          <i onClick={this.props.addEmail} className="fas fa-plus btn-compose">
+            Compose
+          </i>
+        </button>
+        {/* <button onClick={this.props.addEmail}>+ Compose</button> */}
+        <button className="starred-btn" onClick={this.props.onShowStarsEmails}>
+          <i class="far fa-star"></i>
+          Starred
+        </button>
       </section>
     );
   }

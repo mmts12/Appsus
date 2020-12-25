@@ -21,18 +21,25 @@ export function EmailPreview({
           checked={email.isRead ? true : false}
           onChange={(ev) => markEmail(email, ev)}
         /> */}
-        <button
-          className={email.isStar ? 'star-btn-active' : 'star-btn'}
+
+        <i
           onClick={(ev) => starMail()}
-        >
-          <i className="far fa-star"></i>
-        </button>
-        <button
+          className={
+            email.isStar
+              ? 'star-btn-active far fa-star'
+              : 'star-btn far fa-star'
+          }
+        ></i>
+        <i
+          onClick={() => emailDelete(email.id)}
+          class="far fa-trash-alt email-delete-btn"
+        ></i>
+        {/* <button
           className="email-delete-btn"
           onClick={() => emailDelete(email.id)}
         >
           Delete
-        </button>
+        </button> */}
       </div>
       <Link to={`/mail/${email.id}`}>
         <div className="email-details-container">

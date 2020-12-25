@@ -19,14 +19,16 @@ export class EmailHeader extends React.Component {
   render() {
     return (
       <header className="email-header">
-        <input
-          className="email-input-search"
-          type="text"
-          name="subject"
-          id=""
-          placeholder="Search mail"
-          onChange={this.handleInput}
-        />
+        <i class="fas fa-search">
+          <input
+            className="email-input-search"
+            type="text"
+            name="subject"
+            id=""
+            placeholder="Search mail"
+            onChange={this.handleInput}
+          />
+        </i>
         <select name="readMails" onChange={this.handleInput}>
           <option value="All">All</option>
           <option value="Read">Read</option>
