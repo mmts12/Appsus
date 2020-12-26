@@ -43,9 +43,12 @@ export class NoteEdit extends React.Component {
         const copy = { ...this.state.note };
         if (copy.type === 'NoteTodos') {
             const todoFormated = keepService.formateTodo(this.state.todoList);
-            this.setState({info: { title: {}, todos: todoFormated}})
+            copy.info = {
+                title: this.state.note.info.title,
+                todos : todoFormated
+            }
         }
-        this.props.editNote(note);
+        this.props.editNote(copy);
         this.props.toggleEditNote()
     }
 

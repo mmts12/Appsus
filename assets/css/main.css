@@ -1,6 +1,7 @@
 @import './basics/base.css';
 @import './basics/fonts.css';
 @import './basics/HomePage.css';
+@import './basics/about.css';
 @import './basics/MainNav.css';
 @import './basics/UserMsg.css';
 @import '../../apps/Keep/assets/css/KeepMain.css';

@@ -15,3 +15,7 @@
   font-size: 3em;
   font-weight: 400;
 }
+
+.apps-header .logo span {
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
