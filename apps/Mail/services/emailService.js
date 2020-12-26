@@ -96,7 +96,6 @@ function markEmailRead(markEmail) {
 }
 function markEmailReaded(markEmail) {
     const emailIdx = gEmails.findIndex((email) => email.id === markEmail.id)
-    console.log(emailIdx)
     markEmail.isRead = true;
     gEmails[emailIdx] = markEmail;
     return Promise.resolve(gEmails);

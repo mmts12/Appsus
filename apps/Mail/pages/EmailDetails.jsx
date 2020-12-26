@@ -1,5 +1,5 @@
 import { emailService } from '../services/emailService.js';
-import { ComposeModal } from './cmps/ComposeModal.jsx';
+import { ComposeModal } from '../cmps/ComposeModal.jsx';
 const { Link } = ReactRouterDOM;
 export class EmailDetails extends React.Component {
   state = {
@@ -80,7 +80,7 @@ export class EmailDetails extends React.Component {
             <h3>from: {email.senderEmail}</h3>
             <div>{`${email.fullDate}`}</div>
           </div>
-          <h1>{email.subject}</h1>
+
           <div className="email-details-actions">
             {prevEmail && (
               <Link to={`/mail/${prevEmail}`}>
@@ -99,23 +99,27 @@ export class EmailDetails extends React.Component {
               </Link>
             )}
           </div>
-          <div>
-            <Link to={`/mail/`}>
-              <i
-                onClick={() => this.onRemove()}
-                className="fas fa-trash-alt "
-              ></i>
-            </Link>
-            <i
-              onClick={(ev) => this.starMail()}
-              className={
-                email.isStar
-                  ? 'star-btn-active fas fa-star'
-                  : 'star-btn far fa-star'
-              }
-            ></i>
-            <i onClick={this.onReplay} className="fas fa-reply"></i>
-
+          <div className="email-container">
+            <div className="email-header-section">
+              <h1 className="email-header-headline">{email.subject}</h1>
+              <div>
+                <Link to={`/mail/`}>
+                  <i
+                    onClick={() => this.onRemove()}
+                    className="fas trash-email-details action-btns fa-trash-alt "
+                  ></i>
+                </Link>
+                <i
+                  onClick={(ev) => this.starMail()}
+                  className={
+                    email.isStar
+                      ? 'star-btn-active action-btns fas fa-star'
+                      : 'star-btn far action-btns fa-star'
+                  }
+                ></i>
+                <i onClick={this.onReplay} className="fas fa-reply"></i>
+              </div>
+            </div>
             <pre>{this.state.email.body}</pre>
           </div>
           {this.state.modalShow && (

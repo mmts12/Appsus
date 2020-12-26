@@ -8,9 +8,9 @@
   flex-direction: column;
 }
 
-.email-details h1 {
+/* .email-details h1 {
   margin-top: 50px;
-}
+} */
 
 .email-details pre {
   padding: 40px;
@@ -54,4 +54,34 @@ h3 {
 .prev-next-btn:hover {
   box-shadow: 1px 1px 8px 13px rgba(158, 158, 158, 0.83);
   border-radius: 30px 30px 30px 30px;
+}
+.email-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.email-header-section i {
+  cursor: pointer;
+}
+.email-header-headline {
+  margin: 0px;
+  margin-top: 0px;
+}
+.action-btns {
+  margin-inline-end: 15px;
+}
+.trash-email-details {
+  color: red;
+}
+.fa-reply {
+  color: blue;
+}
+.email-container {
+  background-color: #dfe8ea;
+  padding: 20px;
+  margin-top: 10px;
+}
+pre {
+  font-family: Helvetica, Arial, sans-serif;
 }

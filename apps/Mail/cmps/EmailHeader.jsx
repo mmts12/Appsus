@@ -19,7 +19,6 @@ export class EmailHeader extends React.Component {
   };
   render() {
     const { emailsStatus } = this.props;
-    console.log(emailsStatus);
     return (
       <header
         className="main-header-email flex space-between align-center"

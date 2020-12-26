@@ -9,8 +9,6 @@ export function EmailList({
 }) {
   return (
     <section>
-      {console.log(emails)}
-
       <ul>
         {emails.map((email) => {
           return (
