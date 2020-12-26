@@ -1,9 +1,9 @@
 export class InfoCmp extends React.Component {
 
     render() {
-        const { height, opacity } = this.props.display;
+        const { height, opacity, zIndex } = this.props.display;
         return (
-            <section className="info" style={{ height: `${height}` + 'px', opacity: `${opacity}` }}>
+            <section className="info" style={{ height: `${height}` + 'px', opacity: `${opacity}` , zIndex: `${zIndex}` }}>
                 <h1>Here Are Some Links For Quick And Easy Use</h1>
                 <hr />
                 <h1>Images:</h1>

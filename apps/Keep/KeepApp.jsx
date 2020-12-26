@@ -8,7 +8,6 @@ export class KeepApp extends React.Component {
 
     state = {
         notes: [],
-        modalDisplay: 'none',
         filterBy: {
             type: '',
             text: '',
@@ -40,13 +39,6 @@ export class KeepApp extends React.Component {
         this.loadNotes();
     }
 
-    editNote = (noteId) => {
-        this.setState({ modalDisplay: 'block' });
-        NoteEdit.editNote(noteId);
-        // keepService.editNote(noteId);
-        this.loadNotes();
-    }
-
     changeBgcNote = (noteId, color) => {
         keepService.changeBgcNote(noteId, color);
         this.loadNotes();
@@ -68,10 +60,16 @@ export class KeepApp extends React.Component {
         this.loadNotes();
     }
 
+    editNote = (note) => {
+        // console.log('got note', note);
+        keepService.editNote(note);
+        // this.loadNotes();
+    }
+
     getNotesForDisplay = () => {
         const filter = this.state.filterBy;
         const { notes } = this.state;
-        console.log('filtering by', filter);
+        // console.log('filtering by', filter);
         switch (filter.type) {
             case 'NoteText':
                 return notes.filter(note => {
@@ -105,7 +103,7 @@ export class KeepApp extends React.Component {
     }
 
     render() {
-        const { notes, modalDisplay } = this.state;
+        const { notes } = this.state;
         if (!notes || !notes.length) return <h1>Loading...</h1>;
         return (
             <section className="keep-app main-layout">
@@ -116,9 +114,9 @@ export class KeepApp extends React.Component {
 
                 <div className="notes-container">
                     <KeepList notes={this.getNotesForDisplay()} onDeleteNote={this.deleteNote} onPinnNote={this.pinnNote}
-                        onEditNote={this.editNote} onChangeBgcNote={this.changeBgcNote} onCloneNote={this.cloneNote} onDone={this.checkTodo} />
+                        onChangeBgcNote={this.changeBgcNote} onCloneNote={this.cloneNote}
+                        onDone={this.checkTodo} editNote={this.editNote} />
                 </div>
-                <NoteEdit display={modalDisplay} />
             </section>
         );
     }

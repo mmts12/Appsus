@@ -47,7 +47,7 @@
 
 .add-area .info {
     position: absolute;
-    transform: translateY(10%);
+    transform: translateY(12%);
     text-align: start;
     width: 450px;
     overflow: hidden;
