@@ -15,8 +15,8 @@ body {
   justify-content: center;
   margin-top: 20px;
 }
-.app-main {
-}
+/* .app-main {
+} */
 
 @media screen and (max-width: 960px) {
   .app-main {
