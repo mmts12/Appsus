@@ -33,7 +33,7 @@ h3 {
 }
 .email-details-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 .prev-next-btn {
   color: gray;
