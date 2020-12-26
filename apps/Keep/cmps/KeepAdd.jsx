@@ -16,6 +16,7 @@ export class KeepAdd extends React.Component {
     infoDisplay: {
       height: 0,
       opacity: 0,
+      zIndex: (-1),
     },
   };
 
@@ -100,7 +101,8 @@ export class KeepAdd extends React.Component {
   toggleInfo = () => {
     var height = this.state.infoDisplay.height === 450 ? 0 : 450;
     var opacity = this.state.infoDisplay.opacity === 1 ? 0 : 1;
-    this.setState({ infoDisplay: { opacity, height } });
+    var zIndex = this.state.infoDisplay.opacity === 1 ? -1 : 1;
+    this.setState({ infoDisplay: { opacity, height, zIndex } });
   }
 
   _resetNote = () => {

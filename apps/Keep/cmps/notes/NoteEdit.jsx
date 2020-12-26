@@ -3,45 +3,93 @@ export class NoteEdit extends React.Component {
         note: {
             type: '',
             isPinned: false,
-            info: { txt: '' },
+            info: '',
             style: {
-                bgColor: 'whitesmoke',
+                bgColor: '',
             },
         },
-        placeholder: 'Right Something...',
+        placeholder: 'Change Something...',
         isTitled: false,
+        todoList: '',
+        originalNote: {},
     };
 
     componentDidMount() {
-        // console.log(this.state.note);
-    }
-
-    editNote = (note) => {
-        console.log('hi',note);
+        const { note } = this.props;
+        const { todos } = this.props.note.info;
+        if (todos) this._renderTodos(todos);
+        this._checkIfTitled(note);
+        this.setState({ note, originalNote: note });
+        // this.setState({ note, originalNote: note }, () => console.log('originalNote', this.state.originalNote));
     }
 
     handleChange = (ev) => {
         const copy = { ...this.state.note };
-        if (copy.type === 'NoteText') copy.info.txt = ev.target.value;
-        else copy.info = [title = ev.target.value];
-        console.log('copy', copy);
+        if (copy.type === 'NoteTodo') {
+            // var todos = ev.target.value;
+            this.setState({ todoList: ev.target.value });
+        }
+        else if (copy.type === 'NoteText') copy.info.txt = ev.target.value;
+        else copy.info[ev.target.name] = ev.target.value;
         this.setState({ note: copy });
     }
 
+    onEdit = (ev, note) => {
+        ev.preventDefault();
+        const copy = { ...this.state.note };
+        // console.log('child sent', copy);
+        this.props.editNote(note);
+        this.props.toggleEditNote()
+    }
+
+    _checkIfTitled = (note) => {
+        let isTitled = note.type === 'NoteText' ? false : true;
+        this.setState({ isTitled });
+    }
+
+    _renderTodos = (todos) => {
+        const todotxts = todos.map(todo => { return todo.txt });
+        var todoList = todotxts.join();
+        this.setState({ todoList }, () => {
+            console.log('todolist is', this.state.todoList);
+        });
+    }
+
+    _cancelEdit = () => {
+        this.setState({ note: this.state.originalNote })
+    }
 
     render() {
-        const { display } = this.props;
+        const { type } = this.state.note;
+        const { isTitled, todoList, note } = this.state;
+        const { txt, url, todos } = this.state.note.info;
+        console.log('todo in state', todos);
         return (
-            <section className='modal-edit-note' style={{ display }}>
-                <input
-                    type='text'
-                    name='title'
-                    value={this.state.note.info.txt || ''}
+            <form className='edit-note flex col' style={{ display: 'inline-block' }} onSubmit={(ev) => { this.onEdit(ev, note) }}>
+                <input hidden={!isTitled}
+                    type="text"
+                    name="title"
+                    value={this.state.note.info.title || ''}
                     autoFocus
-                    placeholder={this.state.placeholder}
+                    autoComplete="off"
+                    placeholder={'Change Note\'s Title'}
                     onChange={this.handleChange}
                 />
-            </section>
+
+                <input
+                    type="text"
+                    name={type === "NoteTodos" ? "todos" : "url"}
+                    value={txt || url || todoList}
+                    autoFocus
+                    autoComplete="off"
+                    placeholder={'Change Note\'s Text \/ URL'}
+                    onChange={this.handleChange}
+                />
+                <div className="btn-container flex space-between">
+                    <button type="submit" className="save-btn" onSubmit={(ev) => { this.onEdit(ev, note) }}>Save</button>
+                    <button type="button" className="cancel-btn" onClick={() => { this.props.toggleEditNote(), this._cancelEdit() }}>Cancel</button>
+                </div>
+            </form>
         )
     }
 }

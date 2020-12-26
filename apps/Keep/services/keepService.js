@@ -191,8 +191,14 @@ function pinnNote(id) {
     return notes;
 }
 
-function editNote(id) {
-    console.log('service got id', id);
+function editNote(newNote) {
+    console.log('the new note', newNote);
+    var notesToEdit = notes;
+    const foundNote = notesToEdit.findIndex(note => note.id === newNote.id);
+    notesToEdit[foundNote] = newNote;
+    notes = notesToEdit;
+    console.log('note that didnt changed', notes[0]);
+    console.log('note that changed', notes[foundNote]);
 }
 
 function changeBgcNote(id, color) {
@@ -215,19 +221,11 @@ function cloneNote(id) {
 function checkTodo(todo, list) {
     var notesToEdit = notes;
     const filteredNotes = notesToEdit.find(note => { return note.type === 'NoteTodos' && note.info.title === list.title });
-    console.log('relevent list', filteredNotes);
-    console.log('the list we got', list.todos);
-    console.log('the todo to change', todo);
-
-    const foundTask = list.todos.findIndex(task => task === todo);
-    console.log('the todo we found', foundTask);
-    console.log('list info', filteredNotes.info.todos[foundTask]);
-    filteredNotes.info.todos[foundTask].style.color = 'red';
-    // notes[filteredNotes] = filteredNotes;
+    var todoIdx = filteredNotes.info.todos.findIndex(task => { return task.txt === todo.txt });
+    filteredNotes.info.todos[todoIdx].isDone = !filteredNotes.info.todos[todoIdx].isDone;
 }
 
 function addNote(note) {
-    // console.log('service got note', note);
     const newNote = {
         id: utilService.makeId(),
         ...note,
