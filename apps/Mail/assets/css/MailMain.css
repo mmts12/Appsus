@@ -10,6 +10,7 @@ body {
 
 .app-main {
   padding: 0.3em;
+  padding-top: 150px;
 }
 
 .sender-name {
@@ -106,6 +107,7 @@ body {
     border-left: 1px solid #d6d6d6;
     flex-direction: column;
     transform: translateX(-100%);
+    padding-top: 150px;
 
     transition: transform 0.8s;
   }

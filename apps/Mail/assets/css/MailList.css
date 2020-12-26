@@ -4,6 +4,7 @@
   /* width: 80vw; */
   flex-grow: 8;
   font-size: 1rem;
+  margin-inline-end: 1.5em;
 }
 
 .email-list li {
