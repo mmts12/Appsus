@@ -1,9 +1,17 @@
 .apps-header {
-  background: linear-gradient(to left, #f8b500, #fceabb);
-  border-bottom: 2px grey solid;
+  /* background-color: #d93025; */
+  /* background-color: #8ab4f8; */
+  /* background-color: #fbbc05; */
+  background-color: white;
+  /* border-bottom: 2px grey solid; */
   padding: 1em;
 }
 
 .apps-header a {
   color: black;
+}
+
+.apps-header .logo {
+  font-size: 3em;
+  font-weight: 400;
 }

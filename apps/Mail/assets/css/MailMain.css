@@ -8,6 +8,20 @@ body {
   margin: 0px;
 }
 
+.app-main {
+  padding: 0 2em;
+}
+
+.sender-name {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 /* APP MAIN  */
 
 .email-main {
@@ -15,6 +29,7 @@ body {
   justify-content: center;
   margin-top: 20px;
 }
+
 /* .app-main {
 } */
 
@@ -29,6 +44,7 @@ body {
     padding-right: 10px;
   }
 }
+
 @media screen and (max-width: 810px) {
   .app-main {
     width: 700px;
@@ -42,6 +58,7 @@ body {
     padding-right: 10px;
   }
 }
+
 @media screen and (max-width: 710px) {
   .app-main {
     width: 500px;

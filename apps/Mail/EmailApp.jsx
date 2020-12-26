@@ -163,7 +163,7 @@ export class EmailApp extends React.Component {
   };
   render() {
     return (
-      <section className="app-main main-layout">
+      <section className="app-main">
         <EmailHeader
           emailsStatus={this.state.status}
           emailsUnreaded={this.state.emailsUnreaded}

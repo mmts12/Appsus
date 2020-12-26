@@ -1,3 +1,5 @@
+import { keepService } from "../../services/keepService.js";
+
 export class NoteEdit extends React.Component {
     state = {
         note: {
@@ -25,9 +27,11 @@ export class NoteEdit extends React.Component {
 
     handleChange = (ev) => {
         const copy = { ...this.state.note };
-        if (copy.type === 'NoteTodo') {
-            // var todos = ev.target.value;
-            this.setState({ todoList: ev.target.value });
+        if (copy.type === 'NoteTodos') {
+            this.setState({ todoList: ev.target.value }, () => {
+                // this.setState({ info: todoList })
+            });
+            // const todoFormated = keepService.formateTodo(this.state.todoList);
         }
         else if (copy.type === 'NoteText') copy.info.txt = ev.target.value;
         else copy.info[ev.target.name] = ev.target.value;
@@ -37,7 +41,10 @@ export class NoteEdit extends React.Component {
     onEdit = (ev, note) => {
         ev.preventDefault();
         const copy = { ...this.state.note };
-        // console.log('child sent', copy);
+        if (copy.type === 'NoteTodos') {
+            const todoFormated = keepService.formateTodo(this.state.todoList);
+            this.setState({info: { title: {}, todos: todoFormated}})
+        }
         this.props.editNote(note);
         this.props.toggleEditNote()
     }

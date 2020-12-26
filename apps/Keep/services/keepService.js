@@ -9,6 +9,7 @@ export const keepService = {
     cloneNote,
     addNote,
     checkTodo,
+    formateTodo,
 }
 
 var notes = [
@@ -225,6 +226,18 @@ function checkTodo(todo, list) {
     filteredNotes.info.todos[todoIdx].isDone = !filteredNotes.info.todos[todoIdx].isDone;
 }
 
+function formateTodo(strTodos) {
+    console.log(strTodos);
+    var todos = strTodos.split(',');
+    return todos.map(todo => {
+        return {
+            txt: todo,
+            isDone: false,
+        }
+    })
+
+}
+
 function addNote(note) {
     const newNote = {
         id: utilService.makeId(),
@@ -246,13 +259,7 @@ function addNote(note) {
             return notes = [noteToAdd, ...notes];
         case 'NoteTodos':
             var strTodos = newNote.info.todos;
-            var todos = strTodos.split(',');
-            var formatedTodos = todos.map(todo => {
-                return {
-                    txt: todo,
-                    isDone: false,
-                }
-            })
+            var formatedTodos = formateTodo(strTodos);
             newNote.info.todos = formatedTodos;
             console.log('new note', newNote);
             return notes = [newNote, ...notes];

@@ -63,7 +63,7 @@ export class KeepApp extends React.Component {
     editNote = (note) => {
         // console.log('got note', note);
         keepService.editNote(note);
-        // this.loadNotes();
+        this.loadNotes();
     }
 
     getNotesForDisplay = () => {
