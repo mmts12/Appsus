@@ -12,7 +12,7 @@ export class About extends React.Component {
           <div className="hilla member-card flex col space-between align-center">
             <img src="../assets/imgs/hilla.jpeg" />
             <h1>Hilla Meri</h1>
-            <h2>CEO And Owner</h2>
+            <h2>Owner CEO And The undisputed  Queen Of Ants </h2>
             <p>Solving problems and creating new visual languages is my biggest passion. My architecture background makes me think of design in a structural and humanistic way. Everything will need to make perfect sense and will need to be designed around the user since the place I’m designing might end up being the place where some people will spend their entire lives. I believe that passion is the key for everything.</p>
           </div>
         </div>
