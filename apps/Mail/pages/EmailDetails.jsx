@@ -102,13 +102,7 @@ export class EmailDetails extends React.Component {
           <div className="email-container">
             <div className="email-header-section">
               <h1 className="email-header-headline">{email.subject}</h1>
-              <div>
-                <Link to={`/mail/`}>
-                  <i
-                    onClick={() => this.onRemove()}
-                    className="fas trash-email-details action-btns fa-trash-alt "
-                  ></i>
-                </Link>
+              <div className="btns-actions-mail">
                 <i
                   onClick={(ev) => this.starMail()}
                   className={
@@ -118,6 +112,12 @@ export class EmailDetails extends React.Component {
                   }
                 ></i>
                 <i onClick={this.onReplay} className="fas fa-reply"></i>
+                <Link to={`/mail/`}>
+                  <i
+                    onClick={() => this.onRemove()}
+                    className="fas trash-email-details action-btns fa-trash-alt "
+                  ></i>
+                </Link>
               </div>
             </div>
             <pre>{this.state.email.body}</pre>

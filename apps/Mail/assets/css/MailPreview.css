@@ -43,7 +43,7 @@ li a {
 }
 
 li:hover .email-delete-btn {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .email-delete-btn:hover {
@@ -52,13 +52,13 @@ li:hover .email-delete-btn {
 
 .envelope {
   background-color: transparent;
-  margin-inline-start: .5em;
+  margin-inline-start: 0.5em;
   color: black;
   opacity: 0;
 }
 
 li:hover .envelope {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .envelope:hover {

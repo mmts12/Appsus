@@ -1,7 +1,9 @@
 export class SideBar extends React.Component {
   render() {
     return (
-      <section className="email-side-bar">
+      <section
+        className={`email-side-bar ${this.props.isShowMenu ? 'open-menu' : ''}`}
+      >
         <i onClick={this.props.addEmail} className="fas fa-plus btn-compose">
           New Mail
         </i>

@@ -43,12 +43,14 @@ export class EmailHeader extends React.Component {
             <option value="Unread">Unread</option>
           </select>
         </form>
-        <i className="far fa-envelope unread-mails">
-          {this.props.emailsUnreaded}
-        </i>
-        <i className="far status-icon fa-star">{emailsStatus.starred}</i>
+        <div className="btns-header-actions">
+          <i className="far fa-envelope unread-mails">
+            {this.props.emailsUnreaded}
+          </i>
+          <i className="far status-icon fa-star">{emailsStatus.starred}</i>
 
-        <i className="far status-icon fa-paper-plane">{emailsStatus.sent}</i>
+          <i className="far status-icon fa-paper-plane">{emailsStatus.sent}</i>
+        </div>
       </header>
     );
   }

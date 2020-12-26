@@ -68,15 +68,15 @@ h3 {
   margin: 0px;
   margin-top: 0px;
 }
-.action-btns {
+
+.trash-email-details,
+.fa-reply {
+  color: rgb(43, 42, 42);
+}
+.btns-actions-mail > *:not(:last-child) {
   margin-inline-end: 15px;
 }
-.trash-email-details {
-  color: red;
-}
-.fa-reply {
-  color: blue;
-}
+
 .email-container {
   background-color: #dfe8ea;
   padding: 20px;

@@ -3,12 +3,13 @@
 .email-side-bar {
   display: flex;
   flex-direction: column;
-  flex-grow: 2;
+  flex-grow: 1;
 }
 
 .email-side-bar .btn-compose {
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
-  letter-spacing: .25px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+  letter-spacing: 0.25px;
   align-items: center;
   background-color: #fff;
   border-radius: 24px;
@@ -20,7 +21,7 @@
   min-width: 56px;
   overflow: hidden;
   width: 150px;
-  padding: .2em;
+  padding: 0.2em;
 }
 
 .email-side-bar .btn-compose::before {
@@ -36,18 +37,19 @@
 
 .email-side-bar .btn-compose:hover {
   cursor: pointer;
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+    0 4px 8px 3px rgba(60, 64, 67, 0.149);
   background-color: #fafafb;
 }
 
-.menu-list>* {
-  margin: .3em 0;
-  padding: .5em 1.5em;
+.menu-list > * {
+  margin: 0.3em 0;
+  padding: 0.5em 1.5em;
   cursor: pointer;
   width: 100px;
 }
 
-.menu-list>*:hover {
+.menu-list > *:hover {
   background-color: #ded9d9;
   border-radius: 0 50px 50px 0;
 }

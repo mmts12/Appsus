@@ -17,6 +17,7 @@ export class EmailApp extends React.Component {
     modalShow: false,
     emailsToShow: 'inbox',
     status: {},
+    isShowMenu: false,
   };
 
   getEmailsStatus = () => {
@@ -114,6 +115,7 @@ export class EmailApp extends React.Component {
   };
 
   onShowSentEmails = () => {
+    this.onToggleMenu();
     if (this.state.sentEmails.length === 0) return;
     let emailsToShow = this.state.emailsToShow;
     emailsToShow = 'sent';
@@ -121,17 +123,19 @@ export class EmailApp extends React.Component {
   };
 
   onShowStarsEmails = () => {
+    this.onToggleMenu();
     let emailsToShow = this.state.emailsToShow;
     emailsToShow = 'stared';
     this.setState({ emailsToShow });
   };
   onShowInbox = () => {
+    this.onToggleMenu();
     let emailsToShow = this.state.emailsToShow;
     emailsToShow = 'inbox';
     this.setState({ emailsToShow });
   };
   onShowDeleted = () => {
-    if (this.state.deletedEmails.length === 0) return;
+    this.onToggleMenu();
     let emailsToShow = this.state.emailsToShow;
     emailsToShow = 'deleted';
     this.setState({ emailsToShow });
@@ -161,9 +165,17 @@ export class EmailApp extends React.Component {
     });
     this.countUnreadedeEmails();
   };
+
+  onToggleMenu = () => {
+    this.setState({ isShowMenu: !this.state.isShowMenu });
+  };
   render() {
     return (
       <section className="app-main">
+        <div
+          className={`main-screen ${this.state.isShowMenu ? 'savta' : ''}`}
+          onClick={this.onToggleMenu}
+        ></div>
         <EmailHeader
           emailsStatus={this.state.status}
           emailsUnreaded={this.state.emailsUnreaded}
@@ -171,12 +183,16 @@ export class EmailApp extends React.Component {
         />
         <main className="email-main flex space-between">
           <SideBar
+            isShowMenu={this.state.isShowMenu}
             onShowDeleted={this.onShowDeleted}
             onShowSentEmails={this.onShowSentEmails}
             onShowInbox={this.onShowInbox}
             onShowStarsEmails={this.onShowStarsEmails}
             addEmail={this.onOpenModal}
           />
+          <div className="menu-btn" onClick={this.onToggleMenu}>
+            <i className="hamburger-btn fas fa-bars"></i>
+          </div>
           <div className="email-list">
             <EmailList
               emailsToShow={this.state.emailsToShow}
