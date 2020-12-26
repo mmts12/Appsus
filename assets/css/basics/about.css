@@ -44,6 +44,10 @@
     width: 80%;
 }
 
+.about-page .hilla{
+    margin-bottom: 6em;
+}
+
 @media screen and (max-width: 1000px) {
     .team-section {
         flex-direction: column-reverse;

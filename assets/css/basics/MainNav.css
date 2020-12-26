@@ -71,6 +71,11 @@ color: rgb(37, 36, 36);}
 
 .app-container i.active {
   opacity: 1;
+  transition: .3s;
+}
+
+.app-container i.active:hover {
+  color: #ef4c41;
 }
 
 .app-container span.active {

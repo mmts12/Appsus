@@ -44,3 +44,9 @@
 .search-area input:focus {
     outline-style: none;
 }
+
+@media screen and (max-width: 600px){
+    .search-area{
+        width: 300px
+    }
+}
