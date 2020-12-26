@@ -52,10 +52,10 @@ body {
   transition: opacity 0.8s;
 }
 
-.main-screen.savta {
+/* .main-screen.savta {
   visibility: visible;
   opacity: 1;
-}
+} */
 .hamburger-btn {
   font-size: 2em;
 }
