@@ -169,8 +169,8 @@ Actively recruiting`,
             isStar: true,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608731542),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606656190000),
+            fullDate: new Date(1606656190000),
             senderEmail: 'jobs-listings@linkedin.com',
 
         },
@@ -195,8 +195,8 @@ The Dropbox Team	`,
             isStar: true,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608731542),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606569790000),
+            fullDate: new Date(1606569790000),
             senderEmail: 'no-reply@dropboxmail.com‏'
         },
         {
@@ -221,8 +221,8 @@ Thank you,
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608731542),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606483390000),
+            fullDate: new Date(1606483390000),
             senderEmail: 'no-reply@t.mail.coursera.org'
         },
         {
@@ -252,8 +252,8 @@ Sincerely,
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608731542),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606396990000),
+            fullDate: new Date(1606396990000),
             senderEmail: 'skrill@news.skrill.com'
         },
         {
@@ -278,8 +278,8 @@ The Quora Team`,
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608731542),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606310590000),
+            fullDate: new Date(1606310590000),
             senderEmail: 'noreply@quora.com‏'
         },
         {
@@ -308,8 +308,8 @@ Bes`,
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608731542),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606224190000),
+            fullDate: new Date(1606224190000),
             senderEmail: 'teamzoom@info.zoom.us'
         },
         {
@@ -333,8 +333,8 @@ The team at Spotify`,
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608700000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606137790000),
+            fullDate: new Date(1606137790000),
             senderEmail: 'no-reply@spotify.com‏'
         },
         {
@@ -364,8 +364,8 @@ https://www.introversion.co.uk/prototypes/
             isStar: false,
             isSent: true,
             isDeleted: false,
-            sentAt: getDateFormatted(160870000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1606054990000),
+            fullDate: new Date(1606054990000),
             senderEmail: 'support@introversion.co.uk'
         },
         {
@@ -385,8 +385,8 @@ Hopefully that helps!
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608710000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1603203790000),
+            fullDate: new Date(1603203790000),
             senderEmail: 'https://stackoverflow.com/@introversion.co.uk'
         },
         {
@@ -407,8 +407,8 @@ If you updated your personal info recently, please ignore this remind
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608710000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1602771790000),
+            fullDate: new Date(1602771790000),
             senderEmail: 'ebay@ebay.com'
         },
         {
@@ -444,8 +444,8 @@ The Mailchimp Legal Team
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608710000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1602339790000),
+            fullDate: new Date(1602339790000),
             senderEmail: 'legalnotice@mailchimp.com'
         },
         {
@@ -468,8 +468,8 @@ Thank You!
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608710000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1602336190000),
+            fullDate: new Date(1602336190000),
             senderEmail: 'nortechdevteam@gmail.com'
         },
         {
@@ -494,8 +494,8 @@ Questions? Contact us anytime at csa@checkpoint.com
             isStar: false,
             isSent: false,
             isDeleted: false,
-            sentAt: getDateFormatted(1608710000),
-            fullDate: new Date(1608731542),
+            sentAt: getDateFormatted(1601558590000),
+            fullDate: new Date(1601558590000),
             senderEmail: 'no-reply@csa-challenge.com'
         }
     ]

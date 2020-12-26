@@ -63,4 +63,7 @@ body {
   .app-main {
     width: 500px;
   }
+  .email-list li {
+    height: 92px;
+  }
 }
