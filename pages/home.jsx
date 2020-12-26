@@ -17,7 +17,6 @@ export class Home extends React.Component {
             <h2>Meet Your New Mail Box</h2>
             <h3>Take back the control. <br />
           With simple design and powerful interface, you decide what to read and when</h3>
-            {/* <h3>With simple design and powerful interface, it's up to you to decide what to read and when</h3> */}
             <img src='../assets/imgs/desktop.png' />
           </div>
         </div>
