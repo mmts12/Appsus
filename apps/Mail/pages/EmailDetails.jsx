@@ -45,27 +45,38 @@ export class EmailDetails extends React.Component {
     return (
       <section className="email-details">
         <div className="email-details-main-content">
+          <Link to="/mail">
+            <i
+              className="far fa-arrow-alt-circle-left"
+              title="back to email list"
+            ></i>
+          </Link>
           <h1>{email.subject}</h1>
           <h2>{email.senderName}</h2>
           <div className="from-container">
             <h3>from: {email.senderEmail}</h3>
             <div>{`${email.fullDate}`}</div>
           </div>
-          <Link to="/mail">
-            <button>Back to Emails</button>
-          </Link>
+          <div className="email-details-actions">
+            {prevEmail && (
+              <Link to={`/mail/${prevEmail}`}>
+                <i
+                  className="fas prev-next-btn fa-arrow-left "
+                  title="prev mail"
+                ></i>
+              </Link>
+            )}
+            {nextEmail && (
+              <Link to={`/mail/${nextEmail}`}>
+                <i
+                  className="fas prev-next-btn fa-arrow-right"
+                  title="next mail"
+                ></i>
+              </Link>
+            )}
+          </div>
           <pre>{this.state.email.body}</pre>
         </div>
-        {nextEmail && (
-          <Link to={`/mail/${nextEmail}`}>
-            <button>Next Mail</button>
-          </Link>
-        )}
-        {prevEmail && (
-          <Link to={`/mail/${prevEmail}`}>
-            <button>previous Mail</button>
-          </Link>
-        )}
       </section>
     );
   }

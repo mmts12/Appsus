@@ -22,7 +22,7 @@ export class EmailHeader extends React.Component {
     console.log(emailsStatus);
     return (
       <header
-        className="flex space-between align-center"
+        className="main-header-email flex space-between align-center"
         onSubmit={(ev) => {
           ev.preventDefault();
         }}

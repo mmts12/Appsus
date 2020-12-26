@@ -24,8 +24,8 @@ export function EmailPreview({
       ></i>
       <Link to={`/mail/${email.id}`}>
         <div className="email-details-container">
-          <div className="">{email.senderName}</div>
-          <div>{email.subject}</div>
+          <div className="sender-name">{email.senderName}</div>
+          <div className="subject-email">{email.subject}</div>
           <div className="flex email-actions">
             <div>{email.sentAt}</div>
           </div>

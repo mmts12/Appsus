@@ -40,7 +40,6 @@ export class EmailApp extends React.Component {
 
   componentDidMount() {
     this.loadEmails();
-
     this.countUnreadedeEmails();
   }
 
@@ -146,13 +145,13 @@ export class EmailApp extends React.Component {
   onAddNewMail = (mail) => {
     emailService.addNewMail(mail);
     this.loadEmails();
-    // this.countUnreadedeEmails();
+    this.countUnreadedeEmails();
   };
 
   onDelete = (id) => {
     emailService.deleteEmail(id).then((emails) => {
       this.setState({ emails });
-      // this.countUnreadedeEmails();
+      this.countUnreadedeEmails();
     });
   };
 
@@ -160,7 +159,7 @@ export class EmailApp extends React.Component {
     emailService.markEmailRead(emailToMArk).then(() => {
       this.loadEmails();
     });
-    // this.countUnreadedeEmails();
+    this.countUnreadedeEmails();
   };
   render() {
     return (

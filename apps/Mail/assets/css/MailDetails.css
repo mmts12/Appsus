@@ -18,7 +18,7 @@
   /* word-wrap: break-word; */
   background-color: #f5f7f8;
   /* text-align: center; */
-  width: fit-content;
+  /* width: fit-content; */
   font-size: 1.3rem;
 }
 
@@ -27,6 +27,31 @@
   margin-right: 40px;
 }
 
-.email-details h2, h3 {
+.email-details h2,
+h3 {
   font-weight: 400;
+}
+.email-details-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.prev-next-btn {
+  color: gray;
+  margin-top: 20px;
+}
+.fa-arrow-left {
+  margin-right: 20px;
+}
+.fa-arrow-alt-circle-left {
+  margin-top: 20px;
+  font-size: 2em;
+  color: gray;
+}
+.fa-arrow-alt-circle-left:hover {
+  box-shadow: 1px 1px 8px 20px rgba(158, 158, 158, 0.83);
+  border-radius: 30px 30px 30px 30px;
+}
+.prev-next-btn:hover {
+  box-shadow: 1px 1px 8px 13px rgba(158, 158, 158, 0.83);
+  border-radius: 30px 30px 30px 30px;
 }
