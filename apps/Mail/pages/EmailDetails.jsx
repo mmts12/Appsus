@@ -1,10 +1,12 @@
 import { emailService } from '../services/emailService.js';
+import { ComposeModal } from './cmps/ComposeModal.jsx';
 const { Link } = ReactRouterDOM;
 export class EmailDetails extends React.Component {
   state = {
     email: '',
     nextEmail: '',
     prevEmail: '',
+    modalShow: false,
   };
   componentDidMount() {
     this.loadMail();
@@ -37,6 +39,28 @@ export class EmailDetails extends React.Component {
     });
   };
 
+  onRemove = () => {
+    const { mailId } = this.props.match.params;
+    if (!mailId) return;
+    emailService.deleteEmail(mailId);
+  };
+  onReplay = () => {
+    this.setState({ modalShow: true });
+  };
+  onCloseModal = () => {
+    this.setState({
+      modalShow: false,
+    });
+  };
+  onAddNewMail = (mail) => {
+    emailService.addNewMail(mail);
+  };
+  starMail = () => {
+    const { mailId } = this.props.match.params;
+    emailService.markEmailStared(mailId);
+    this.loadMail();
+  };
+
   render() {
     {
       if (!this.state.email) return <h1>Loading...</h1>;
@@ -51,12 +75,12 @@ export class EmailDetails extends React.Component {
               title="back to email list"
             ></i>
           </Link>
-          <h1>{email.subject}</h1>
           <h2>{email.senderName}</h2>
           <div className="from-container">
             <h3>from: {email.senderEmail}</h3>
             <div>{`${email.fullDate}`}</div>
           </div>
+          <h1>{email.subject}</h1>
           <div className="email-details-actions">
             {prevEmail && (
               <Link to={`/mail/${prevEmail}`}>
@@ -75,7 +99,31 @@ export class EmailDetails extends React.Component {
               </Link>
             )}
           </div>
-          <pre>{this.state.email.body}</pre>
+          <div>
+            <Link to={`/mail/`}>
+              <i
+                onClick={() => this.onRemove()}
+                className="fas fa-trash-alt "
+              ></i>
+            </Link>
+            <i
+              onClick={(ev) => this.starMail()}
+              className={
+                email.isStar
+                  ? 'star-btn-active fas fa-star'
+                  : 'star-btn far fa-star'
+              }
+            ></i>
+            <i onClick={this.onReplay} className="fas fa-reply"></i>
+
+            <pre>{this.state.email.body}</pre>
+          </div>
+          {this.state.modalShow && (
+            <ComposeModal
+              onAddNewMail={this.onAddNewMail}
+              closeModal={this.onCloseModal}
+            />
+          )}
         </div>
       </section>
     );
