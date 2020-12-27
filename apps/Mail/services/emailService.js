@@ -49,6 +49,7 @@ function deleteEmail(id) {
     var emails = gEmails;
     const filteredEmails = emails.filter((email) => { return email.id !== id })
     gEmails[emailIdx].isDeleted = true;
+    gEmails[emailIdx].isStar = false;
     gEmails = filteredEmails
     return Promise.resolve(filteredEmails);
 }

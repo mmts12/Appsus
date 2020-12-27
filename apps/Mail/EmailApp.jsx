@@ -156,6 +156,8 @@ export class EmailApp extends React.Component {
     emailService.deleteEmail(id).then((emails) => {
       this.setState({ emails });
       this.countUnreadedeEmails();
+      this.loadEmails();
+      this.getEmailsStatus();
     });
   };
 
